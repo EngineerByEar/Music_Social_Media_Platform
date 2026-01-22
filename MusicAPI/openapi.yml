@@ -1,0 +1,53 @@
+openapi: '3.0.3'
+info:
+  title: Music Social Media API
+  description: Rest API for a social media platform with ML-based Content/Collaborative/Hybrid User Specific Recommendations
+  version: '1.0'
+
+servers:
+  - url: https://mt241063-10974.node.ustp.cloud
+    description: Deployment
+  - url: http://localhost:3000/
+    description: Local Testing
+paths:
+  /auth/register:
+    post:
+      summary: Register a new User
+      tags: [Auth]
+      requestBody: 
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, password, email]
+              properties:
+                email:
+                  type: string
+                  example: user@example.at
+                password:
+                  type: string
+                  example: qwe123
+      responses:
+        "201":
+          description: User was created successfully
+        "400":
+          description: Invalid input
+  /post:
+    post:
+      summary: Upload a new Post
+      tags: [Posts]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [username, post_image, post_audio, post_title, post_description, post_genre, post_tags]
+              properties:
+                username:
+                
+
+components:
+  schemas:
+    

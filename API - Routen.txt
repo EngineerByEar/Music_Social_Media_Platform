@@ -1,0 +1,21 @@
+Possible User Interactions for API Design:
+
+	Account-Related:
+		Register
+		Login
+		Enter Preferences
+		Change Settings
+		Change Profile
+	
+	Using the Platform:
+		Get User History (History Page)
+		Get Recommendations (Main Page)
+		Follow User
+		Get User Page (Looking at someone elses profile)
+		Upload Post
+	Interaction with Post 
+		View
+		Like
+		Comment
+		Save
+		Share

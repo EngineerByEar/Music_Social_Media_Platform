@@ -24,30 +24,43 @@ paths:
               properties:
                 email:
                   type: string
-                  example: user@example.at
+                  example: "user@example.at"
+                username:
+                  type: string
+                  example: "Mike"
                 password:
                   type: string
-                  example: qwe123
+                  example: "qwe123"
       responses:
+
         "201":
-          description: User was created successfully
+          description: "User was created successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registration_response"
         "400":
-          description: Invalid input
-  /post:
-    post:
-      summary: Upload a new Post
-      tags: [Posts]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [username, post_image, post_audio, post_title, post_description, post_genre, post_tags]
-              properties:
-                username:
-                
+          description: "Invalid input"
 
 components:
   schemas:
-    
+    access_token:
+      type: object
+      properties:
+        token:
+          type: string
+          description: "JWT Access Token"
+
+    user:
+      type: object
+      properties:
+        username:
+          type: string
+
+    registration_response:
+      type: object
+      properties: 
+        token:
+          $ref: "#/components/schemas/access_token"
+        user:
+          $ref: "#/components/schemas/user"

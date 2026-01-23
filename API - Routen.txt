@@ -14,13 +14,20 @@ Possible User Interactions for API Design:
 		Get User History (History Page)
 		Get Recommendations (Main Page)
 		Follow User
+		Unfollow User
+		Add LikeCount when a post is loaded
+		Get Comments to a post
+
+		#Load Saved Posts
 	
 	Interaction with Post 
 		View
 		Like
 		Comment
-		Save
-		Share
+
+		#Save
+		#Share
+		#Looking at someone elses Profile (when logged in)
 		
 
 

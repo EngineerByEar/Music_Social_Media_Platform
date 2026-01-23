@@ -138,7 +138,7 @@ paths:
   /users/{username}/loadprofile:
     get:
       summary: "Load the Profile Page of a user"
-      tags: [ Page ]
+      tags: [ Pages ]
       parameters:
         - name: username
           in: path
@@ -163,9 +163,255 @@ paths:
                 message: "The Picture exceeds the maximum file size of 5MB"
                 code: "IMAGE_TOO_LARGE"
 
+  /users/self/history:
+    get:
+      summary: "Load the previously seen posts for the logged in user"
+      tags: [ Pages ]
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          description: "Valid Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HistoryResponse"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "The Picture exceeds the maximum file size of 5MB"
+                code: "IMAGE_TOO_LARGE"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /users/recommendations:
+    get:
+      summary: "Gets personalized recommendations for a specific user"
+      security:
+        - BearerAuth: []
+      tags: [ Recommendations ]
+      responses:
+        "200":
+          description: "Valid Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecommendationsResponse"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                  message: "Your Session has expired. Please log in again."
+                  code: "TOKEN_EXPIRED"
+
+  /guest/recommendations:
+    get:
+      summary: "Gets a generalised recommendation for not logged in users"
+      tags: [ Recommendations ]
+      responses:
+        "200":
+          description: "Valid Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RecommendationsResponse"
+
+  /users/follow/{username}:
+    post:
+      summary: "Triggered when a user wants to follow another user"
+      tags: [ UserActions ]
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Followed successfully"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to follow another user."
+                code: "NOT_LOGGED_IN"
+
+  /users/unfollow/{username}:
+    post:
+      summary: "Triggered when a user wants to unfollow another user"
+      tags: [ UserActions ]
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Unfollowed successfully"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You´re not following this user."
+                code: "NOT_FOLLOWED"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to unfollow another user."
+                code: "NOT_LOGGED_IN"
 
 
+  /interactions/{post_id}/like:
+    post:
+      summary: "Like a specific post"
+      tags: [ Interactions ]
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: string
 
+      responses:
+        "200":
+          description: "Liked successfully"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to follow another user."
+                code: "NOT_LOGGED_IN"
+
+  /interactions/{post_id}/view:
+    post:
+      summary: "Sent to API in order to document watchtime"
+      tags: [ Interactions ]
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                watch_time_seconds:
+                  type: integer
+                  description: "Seconds the user has watched the post"
+                  example: 36
+                completed:
+                  type: boolean
+                  description: "The post was viewed for >= 90% of the post-duration"
+      responses:
+        "200":
+          description: "Watchtime stored successfully"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to store watchtime"
+                code: "NOT_LOGGED_IN"
+
+  /interactions/{post_id}/comment:
+    post:
+      summary: "Comment on a post by logged in user"
+      tags: [ Interactions ]
+      security:
+        - BearAuth: []
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              properties:
+                comment:
+                  type: string
+                  description: "Comment by the user"
+                  example: "Great Song!"
+
+      responses:
+        "200":
+          description: "Watchtime stored successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommentResponse"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Comment field is empty"
+                code: "MISSING_FIELDS"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to store watchtime"
+                code: "NOT_LOGGED_IN"
+
+  
+  
+  
   /post:
     post:
       summary: "Upload a post"
@@ -261,6 +507,78 @@ paths:
               example:
                 message: "Session expired please log in"
                 code: "TOKEN_EXPIRED"
+                
+                
+  /post/{post_id}:
+    get:
+      summary: "Get the Post for the user to view"
+      tags: [ Posts ]
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema: 
+            type: string
+      responses:
+        "200":
+          description: "Post fetched successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                ImageTooLarge:
+                  summary: Picture too large
+                  value:
+                    message: "The picture exceeds the maximum file size of 5MB"
+                    code: "IMAGE_TOO_LARGE"
+                InvalidInput:
+                  summary: Invalid input
+                  value:
+                    message: "This is not a valid input."
+                    code: "INVALID_INPUT" 
+  
+  /posts/{post_id}/comments:
+    get:
+      summary: "Loads all the comments for a specific post"
+      tags: [ Posts ]
+      parameters:
+        - name: post_id
+          in: path
+          schema: 
+            type: string
+      responses:
+        "200":
+          description: "Comments fetched successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: "#/components/schemas/CommentResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                ImageTooLarge:
+                  summary: Picture too large
+                  value:
+                    message: "The picture exceeds the maximum file size of 5MB"
+                    code: "IMAGE_TOO_LARGE"
+                InvalidInput:
+                  summary: Invalid input
+                  value:
+                    message: "This is not a valid input."
+                    code: "INVALID_INPUT"
 
 components:
   schemas:
@@ -414,6 +732,14 @@ components:
               format: url
               description: "Path to the Image file for the post"
               example: "localhost:3000/post_id/imagefilename.png"
+            post_likes:
+              type: integer
+              description: "Number of likes on that post"
+              example: "24"
+            post_comments_count:
+              type: integer
+              description: "Number of comments on that post"
+              example: "3"
 
     PostPreview:
       type: object
@@ -432,9 +758,6 @@ components:
           example: "localhost:3000/post_id/previewimagefilename.png"
 
 
-
-
-
     ProfileInformation:
       type: object
       properties:
@@ -447,7 +770,6 @@ components:
           description: "Description of a profile"
           example: "Welcome to my profile"
 
-
     ProfilePageResponse:
       allOf:
         - $ref: "#/components/schemas/ProfileInformation"
@@ -458,8 +780,40 @@ components:
               items: 
                 $ref: "#/components/schemas/PostPreview"
 
+    CommentResponse:
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username of a Profile owner"
+          example: "Mike"
+        comment:
+          type: string
+          description: "Comment made by the user"
+          example: "Great post!"
+        timestamp:
+          type: string
+          format: date-time
+          description: "Time when the comment was posted"
+          example: "2026-01-23T18:15:00Z"
 
+    HistoryResponse:
+      type: array
+      items:
+        allOf:
+          - $ref: "#/components/schemas/PostPreview"
+          - type: object
+            properties:
+              viewed_at:
+                type: string
+                format: date-time
+                description: "Time when the post was viewed"
+                example: "2026-01-23T16:36:00Z"
 
+    RecommendationsResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PostPreview"
 
     AuthSuccessfulResponse:
       type: object

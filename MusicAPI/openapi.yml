@@ -12,25 +12,15 @@ servers:
 paths:
   /auth/register:
     post:
-      summary: Register a new User
-      tags: [Auth]
-      requestBody: 
+      summary: "Register a new User"
+      tags: [ Auth ]
+      requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              required: [username, password, email]
-              properties:
-                email:
-                  type: string
-                  example: "user@example.at"
-                username:
-                  type: string
-                  example: "Mike"
-                password:
-                  type: string
-                  example: "qwe123"
+              $ref: "#/components/schemas/UserRegistration"
+
       responses:
 
         "201":
@@ -38,29 +28,462 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/registration_response"
+                $ref: "#/components/schemas/AuthSuccessfulResponse"
         "400":
           description: "Invalid input"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /auth/login:
+    post:
+      summary: "Login an existing user"
+      tags: [ Auth ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserBase"
+      responses:
+        "200":
+          description: "User logged in successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthSuccessfulResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /users/self/content_preferences:
+    patch:
+      summary: "Change content preferences from default values"
+      tags: [ Users ]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserContentPreferences"
+      responses:
+        "200":
+          description: "Preferences updated successfully"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /users/self/ui_settings:
+    patch:
+      summary: "Change UI Settings from default values"
+      tags: [ Users ]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserUISettings"
+      responses:
+        "200":
+          description: "Preferences updated successfully"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /users/self/profile:
+    patch:
+      summary: "Update the Users Profile (Picture and Description)"
+      tags: [ Users ]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UserProfileUpdate"
+      responses:
+        "200":
+          description: "Preferences updated successfully"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "The Picture exceeds the maximum file size of 5MB"
+                code: "IMAGE_TOO_LARGE"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+
+  /users/{username}/loadprofile:
+    get:
+      summary: "Load the Profile Page of a user"
+      tags: [ Page ]
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Valid Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProfilePageResponse"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "The Picture exceeds the maximum file size of 5MB"
+                code: "IMAGE_TOO_LARGE"
+
+
+
+
+  /post:
+    post:
+      summary: "Upload a post"
+      tags: [ Posts ]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PostUpload"
+      responses:
+        "200":
+          description: "Post uploaded successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                ImageTooLarge:
+                  summary: Picture too large
+                  value:
+                    message: "The picture exceeds the maximum file size of 5MB"
+                    code: "IMAGE_TOO_LARGE"
+                AudioTooLarge:
+                  summary: Audio too large
+                  value:
+                    message: "The audio file exceeds the maximum file size of 5MB"
+                    code: "AUDIO_TOO_LARGE"
+                MissingFields:
+                  summary: Missing fields
+                  value:
+                    message: "Missing required fields: post_title, post_audio"
+                    code: "MISSING_FIELDS"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Session expired please log in"
+                code: "TOKEN_EXPIRED"
+
+    patch:
+      summary: "Change values of a already existing post"
+      tags: [ Posts ]
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PostUpdate"
+      responses:
+        "200":
+          description: "Post updated successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostResponse"
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                ImageTooLarge:
+                  summary: Picture too large
+                  value:
+                    message: "The picture exceeds the maximum file size of 5MB"
+                    code: "IMAGE_TOO_LARGE"
+                InvalidInput:
+                  summary: Invalid input
+                  value:
+                    message: "This is not a valid input."
+                    code: "INVALID_INPUT"
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Session expired please log in"
+                code: "TOKEN_EXPIRED"
 
 components:
   schemas:
-    access_token:
-      type: object
-      properties:
-        token:
-          type: string
-          description: "JWT Access Token"
+    AccessToken:
+      type: string
+      example: "56071515540"
+      description: "JWT Access Token"
 
-    user:
+
+    UserRegistration:
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+        - type: object
+          properties:
+            password:
+              type: string
+              example: "verysecretpassword"
+
+    UserBase:
       type: object
       properties:
         username:
           type: string
+          example: "best_username_is_mike"
+        email:
+            type: string
+            example: "email@themail.at"
 
-    registration_response:
+    UserPublic:
+      allOf:
+        - $ref: "#/components/schemas/UserBase"
+        - type: object
+          properties:
+            user_id:
+                type: integer
+                example: 1234
+
+    UserContentPreferences:
       type: object
-      properties: 
+      minProperties: 1
+      properties:
+        content_language:
+          type: string
+          example: "en"
+        recommendation_algorithm:
+          type: string
+          enum: ["content_based", "collaborative", "hybrid"]
+          description: "Select recommendation strategy"
+        preferred_genres:
+          type: array
+          example: ["Rock","Reggae"]
+          items:
+            type: string
+        autoplay:
+          type: boolean
+
+    UserUISettings:
+      type: object
+      minProperties: 1
+      properties:
+        ui_language:
+          type: string
+          example: "en"
+        theme:
+          type: string
+          enum: ["dark","light", "custom"]
+
+    UserProfileUpdate:
+      type: object
+      minProperties: 1
+      properties:
+        profile_picture:
+          type: string
+          format: binary
+          description: "Profile Picture"
+        profile_description:
+          type: string
+          example: "This is my profile :3"
+
+
+    PostBase:
+      type: object
+      required: [ post_title, post_description ]
+      properties:
+        post_title:
+          type: string
+          description: "Title for the Post"
+          example: "Great Post Title"
+
+        post_description:
+          type: string
+          description: "Description and additional infos to the post"
+
+    PostUpdateableParameters:
+      type: object
+      properties:
+        post_image:
+          type: string
+          format: binary
+          description: "Image for the Post"
+
+        post_tags:
+          type: array
+          items:
+            type: string
+          description: "Tags to be associated with the post"
+          example: [ "chill", "dnb", "great culture" ]
+
+        post_audio_genre:
+          type: array
+          description: "Genre of the post audio. Separate from post_tags"
+          items:
+            type: string
+          example: [ "Reggae","Progressive Rock" ]
+
+    PostUpload:
+        allOf:
+          - $ref: "#/components/schemas/PostBase"
+          - $ref: "#/components/schemas/PostUpdateableParameters"
+          - type: object
+            required: [post_audio, post_image, post_audio_genre]
+            properties:
+
+              post_audio:
+                type: string
+                format: binary
+                description: "Audio for the Post"
+
+    PostUpdate:
+      minProperties: 1
+      allOf:
+        - $ref: "#/components/schemas/PostBase"
+        - $ref: "#/components/schemas/PostUpdateableParameters"
+
+    PostResponse:
+      allOf:
+        - $ref: "#/components/schemas/PostBase"
+        - type: object
+          properties:
+            post_id:
+              type: integer
+              description: "ID of a specific post"
+              example: 276
+            post_audio_url:
+              type: string
+              format: url
+              description: "Path to the Audio file for the post"
+              example: "localhost:3000/post_id/audiofilename.mp3"
+            post_image_url:
+              type: string
+              format: url
+              description: "Path to the Image file for the post"
+              example: "localhost:3000/post_id/imagefilename.png"
+
+    PostPreview:
+      type: object
+      properties:
+        post_id:
+          type: integer
+          description: "ID of the Post"
+          example: "1234"
+        post_title:
+          type: string
+          description: "Title of the Post"
+          example: "Greatest Post Ever!"
+        preview_image_path:
+          type: string
+          description: "Path of the preview image"
+          example: "localhost:3000/post_id/previewimagefilename.png"
+
+
+
+
+
+    ProfileInformation:
+      type: object
+      properties:
+        username:
+          type: string
+          description: "Username of a Profile owner"
+          example: "Mike"
+        description:
+          type: string
+          description: "Description of a profile"
+          example: "Welcome to my profile"
+
+
+    ProfilePageResponse:
+      allOf:
+        - $ref: "#/components/schemas/ProfileInformation"
+        - type: object
+          properties:
+            posts:
+              type: array
+              items: 
+                $ref: "#/components/schemas/PostPreview"
+
+
+
+
+    AuthSuccessfulResponse:
+      type: object
+      properties:
         token:
-          $ref: "#/components/schemas/access_token"
+          $ref: "#/components/schemas/AccessToken"
         user:
-          $ref: "#/components/schemas/user"
+          $ref: "#/components/schemas/UserPublic"
+
+    ErrorMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Wrong credentials"
+        code:
+          type: string
+          example: "INVALID_CREDENTIALS"
+
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+

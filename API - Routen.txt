@@ -8,14 +8,115 @@ Possible User Interactions for API Design:
 		Change Profile
 	
 	Using the Platform:
+		Upload Post
+		Edit Post
+		Get User Page (Looking at someone elses or your own profile page) [There are no private profiles, you don't need to be logged in to see anothers profile]
 		Get User History (History Page)
 		Get Recommendations (Main Page)
 		Follow User
-		Get User Page (Looking at someone elses profile)
-		Upload Post
+	
 	Interaction with Post 
 		View
 		Like
 		Comment
 		Save
 		Share
+		
+
+
+
+Registrieren
+ 	POST "/register"
+ 	{
+ 	"username": string,
+ 	"password": string,
+*"preferences": array*
+
+ 	}
+ 
+LOGIN
+ 	POST "/login"
+ 	{
+ 	"username": string,
+ 	"password": string
+ 	}
+Upload Post
+ 	POST "/post"
+ 	{
+ 	"username": string,
+ 	"post_image": image,
+ 	"post_audio": audio,
+ 	"post_title": string,
+ 	"post_description": string,
+ 	"post_genre": string,
+ 	"post_tags": array
+ 	}
+Edit Post
+ 	PUT "/post"
+ 	{
+ 	"post_id": int,
+ 	"variable_to_change": string,
+ 	"new_value_of_variable": type(ariable_to_change)
+ 	}
+Delete Post
+ 	DELETE "/post"
+ 	{
+ 	"post_id": int
+ 	}
+ 
+
+History
+ 	GET "/history"
+ 	{
+ 	"username": string,
+ 	"amount": int (Zahl der Beiträge, die geladen warden sollen)
+ 	}
+
+Main Page
+ 	GET "/recommendation"
+ 	{
+ 	"username": string,
+ 	"recommendation_setting" : string/arry_of_parameters
+ 	}
+ 
+ 	POST "/userdata"
+ 	{
+ 	"watchtime": float,
+ 	"comments_read": bool
+ 	}
+
+ 	POST "/liked_post"
+ 	{
+ 	"username" : string,
+ 	"post_id" : int
+ 	}
+
+ 	POST "/disliked_post"
+ 	{
+ 	"username" : string,
+ 	"post_id" : int
+ 	}
+
+ 	GET "/load_comments"
+ 	{
+ 	"post_id": int
+ 	}
+
+ 	POST "/post_comment"
+ 	{
+ 	"username": string,
+ 	"post_id": int,
+ 	"comment": string
+ 	}
+
+ 	POST "/like_comment"
+ 	{
+ 	"username": string,
+ 	"comment_id": int
+ 	}
+
+ 	GET "/get_similar_recommendations"
+ 	{
+ 	"beitrags_id": int,
+ 	"recommendation_setting": string/array_of_parameters
+ 	}

@@ -1,6 +1,2 @@
-export interface IUserRegistration {
-    username: string;
-    email: string;
-    password: string;
-}
+export {};
 //# sourceMappingURL=UserModel.d.ts.map

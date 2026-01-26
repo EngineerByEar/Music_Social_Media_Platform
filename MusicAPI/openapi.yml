@@ -51,7 +51,6 @@ paths:
                     message: "E-Mail is already used for another account"
                     code: "EMAIL_TAKEN"
 
-
   /auth/login:
     post:
       summary: "Login an existing user"
@@ -61,7 +60,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserRegistration"
+              $ref: "#/components/schemas/UserLogin"
       responses:
         "200":
           description: "User logged in successfully"
@@ -75,6 +74,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+
+        "401":
+          description: "Wrong Credentials"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Wrong Username or Password"
+                code: "WRONG_CREDENTIALS"
 
   /users/self/content_preferences:
     patch:
@@ -629,6 +638,18 @@ components:
         email:
             type: string
             example: "email@themail.at"
+
+    UserLogin:
+      type: object
+      minProperties: 1
+      properties:
+        username:
+          type: string
+          example: "best_username_is_mike"
+        password:
+          type: string
+          example: "verysecretpassword"
+
 
     UserPublic:
       allOf:

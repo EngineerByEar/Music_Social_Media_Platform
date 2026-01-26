@@ -1,4 +1,4 @@
-import {IUserRegistration} from "../model/UserModel";
+import {IUserRegistration} from "../model/UserModel.js";
 import {DB} from "../db.js"
 import {compare, hash} from "bcrypt";
 import {ResultSetHeader} from "mysql2";
@@ -9,13 +9,13 @@ export class UserService{
     static async register_user(user: IUserRegistration){
 
         //Checking if username is already taken
-        const check_username = await DB.query(`Select * from users where username = ${user.username}`)
+        const check_username = await DB.query(`Select * from "users" where username = ${user.username}`)
         if(check_username){
             return "username_conflict";
         }
 
         //checking if email has already been used
-        const check_email = await DB.query(`Select * from users where email = ${user.email}`)
+        const check_email = await DB.query(`Select * from "users" where email = ${user.email}`)
        if(check_email){
            return "email_conflict";
        }

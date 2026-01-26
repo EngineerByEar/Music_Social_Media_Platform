@@ -15,6 +15,30 @@ export class UserController {
             return;
         }
         const result = await UserService.register_user(user);
+        if (result == "created") {
+            res.status(201).json({
+                "token": "rerijgowreojg",
+                "user": user
+            });
+        }
+        if (result == "username_conflict") {
+            res.status(409).json({
+                "message": "Username already taken",
+                "code": "USERNAME_TAKEN"
+            });
+        }
+        if (result == "email_conflict") {
+            res.status(409).json({
+                "message": "EMail is already in use by another account",
+                "code": "EMAIL_TAKEN"
+            });
+        }
+        if (result == "database error") {
+            res.status(400).json({
+                "message": "Database Error",
+                "code": "DATABASE_ERROR"
+            });
+        }
     }
 }
 //# sourceMappingURL=UserConroller.js.map

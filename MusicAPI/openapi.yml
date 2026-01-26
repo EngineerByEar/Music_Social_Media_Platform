@@ -35,6 +35,23 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
 
+        "409":
+          description: "Invalid input"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                UsernameTaken:
+                  value:
+                    message: "Username already taken"
+                    code: "USERNAME_TAKEN"
+                EMailTaken:
+                  value:
+                    message: "E-Mail is already used for another account"
+                    code: "EMAIL_TAKEN"
+
+
   /auth/login:
     post:
       summary: "Login an existing user"

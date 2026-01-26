@@ -1,3 +1,15 @@
+Notes:
+	Potential Upgrades:
+		Like Comments
+		Return a full Comments view after a comment is posted. (Including own comment)
+		Return a full recommendation site after a post is posted (Including own post)
+		Save Posts
+		Track Sharing of Posts
+			
+
+
+
+
 Possible User Interactions for API Design:
 
 	Account-Related:

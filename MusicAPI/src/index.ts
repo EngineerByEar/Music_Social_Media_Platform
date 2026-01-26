@@ -3,32 +3,30 @@ import express from "express";
 import type {Express, Request, Response} from "express";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
-import path from "path";
 import YAML from "yaml";
 import cors from "cors";
+import "dotenv/config";
+import {HealthController} from "./controller/HealthController.js";
+import {UserController} from "./controller/UserConroller.js";
 
 const PORT = process.env.PORT || 3000;
-const app = express();
+const app: Express = express();
 
 //Load API Documentation
 const openApiPath = "./openapi.yml";
 const file = fs.readFileSync(openApiPath, "utf8");
 const swaggerDocument = YAML.parse(file);
 
+//Setup API Documentation Route
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use(express.json());
 app.use(cors());
 
-app.get("/", (req:Request, res:Response)=>{
-  res.send({"message":"Hello Express from TS"});
-});
+//Activate Controllers
+HealthController.init(app);
+UserController.init(app);
 
-app.get("/hi", (req:Request, res:Response)=>{
-  res.send("Zeawas");
-});
-
-
-app.listen(PORT, ()=>{
-  console.log(`Express server started on port ${PORT}`);
-});
-
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+})

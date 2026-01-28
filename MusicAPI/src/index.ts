@@ -3,6 +3,7 @@ import express from "express";
 import type {Express, Request, Response} from "express";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
+import path from "path";
 import YAML from "yaml";
 import cors from "cors";
 import "dotenv/config";
@@ -20,6 +21,7 @@ const swaggerDocument = YAML.parse(file);
 
 //Setup API Documentation Route
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/uploads", express.static(path.join(process.cwd(),"uploads")));
 
 app.use(express.json());
 app.use(cors());

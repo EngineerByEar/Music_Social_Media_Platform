@@ -5,37 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/1/audio.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/1/image.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/1/preview.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/4/audio.flac" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/4/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/4/preview.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/5/audio.flac" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/5/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/uploads/posts/5/preview.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AuthController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/AuthService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AuthService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../node_mt241063_10974.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../node_mt241063_10974.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +128,7 @@
       <workItem from="1769436988637" duration="16503000" />
       <workItem from="1769503848193" duration="8711000" />
       <workItem from="1769531848835" duration="5983000" />
-      <workItem from="1769592077522" duration="3641000" />
+      <workItem from="1769592077522" duration="8635000" />
     </task>
     <servers />
   </component>

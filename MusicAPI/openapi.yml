@@ -513,13 +513,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
-              examples:
+              example:
+                message: "Invalid post ID (Not a Number or 0)"
+                code: "INVALID_POST_ID"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Post not found. Check Post ID"
+                code: "POST_NOT_FOUND"
 
-                InvalidInput:
-                  summary: Invalid input
-                  value:
-                    message: "This is not a valid input."
-                    code: "INVALID_INPUT"
     patch:
       summary: "Change values of a already existing post"
       tags: [ Posts ]
@@ -775,13 +781,13 @@ components:
             post_audio_url:
               type: string
               format: url
-              description: "Path to the Audio file for the post"
-              example: "localhost:3000/post_id/audiofilename.mp3"
+              description: "Relative path to the Audio file for the post"
+              example: "/uploads/post_id/audio.mp3"
             post_image_url:
               type: string
               format: url
-              description: "Path to the Image file for the post"
-              example: "localhost:3000/post_id/imagefilename.png"
+              description: "Relative path to the Image file for the post"
+              example: "/uploads/post_id/image.jpg"
             post_likes_count:
               type: integer
               description: "Number of likes on that post"
@@ -804,8 +810,8 @@ components:
           example: "Greatest Post Ever!"
         preview_image_path:
           type: string
-          description: "Path of the preview image"
-          example: "localhost:3000/post_id/previewimagefilename.png"
+          description: "Relative path of the preview image"
+          example: "/uploads/post_id/prev.jpg"
 
 
     ProfileInformation:

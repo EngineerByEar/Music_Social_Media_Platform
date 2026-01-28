@@ -4,9 +4,7 @@ import {PostService} from "../service/PostService.js";
 import {ICreatePostRequest} from "../model/PostModel.js";
 import multer from "multer";
 import path from "path";
-import {dirname} from "path";
 import fs from "fs";
-import {fileURLToPath} from "url";
 import sharp from "sharp";
 
 const storage = multer.memoryStorage();
@@ -19,7 +17,7 @@ export class PostController{
             {name: "post_image", maxCount: 1},
             {name: "post_audio", maxCount: 1},
         ]), PostController.upload_post);
-
+        app.get("/posts/:post_id", PostController.get_post);
 
     }
 
@@ -45,25 +43,30 @@ export class PostController{
 
         const post_id = await PostService.createPost(data);
 
-        const post_dir = path.join(dirname(fileURLToPath(import.meta.url)), `../uploads/posts/${post_id}`);
+        const relative_public_url = path.join('uploads', 'posts', String(post_id));
+        const post_dir = path.join(process.cwd(), relative_public_url);
         fs.mkdirSync(post_dir, { recursive: true });
 
 
         const audio_ext = path.extname(audio.originalname);
         const audio_path = path.join(post_dir, "audio" + audio_ext);
         fs.writeFileSync(audio_path, audio.buffer);
+        const audio_public_url = path.join(relative_public_url, 'audio' + audio_ext);
 
         const image_ext = path.extname(image.originalname);
         const image_path = path.join(post_dir, "image" + image_ext);
         fs.writeFileSync(image_path, image.buffer);
+        const image_public_url = path.join(relative_public_url, 'image' + image_ext);
+
 
         const prev_path = path.join(post_dir, "preview.jpg");
         await sharp(image.buffer)
             .resize(300, 300, {fit: "inside" })
             .jpeg({quality: 70})
             .toFile(prev_path)
+        const prev_public_url = path.join(relative_public_url, 'prev.jpg');
 
-        await PostService.add_post_files(post_id, audio_path, image_path, prev_path);
+        await PostService.add_post_files(post_id, audio_public_url, image_public_url, prev_public_url);
 
         const response = await PostService.get_post(post_id);
 
@@ -76,6 +79,27 @@ export class PostController{
         }
         res.status(200).json(response);
 
+    }
+
+    static async get_post(req: Request, res: Response){
+        const post_id = Number(req.params.post_id);
+        if(isNaN(post_id) || post_id == 0){
+            res.status(400).json({
+                "message": "Invalid post ID (Not a Number or 0)",
+                "code": "INVALID_POST_ID"
+            })
+            return;
+        }
+
+        const response = await PostService.get_post(post_id);
+        if (response == "post_not_found") {
+            res.status(404).json({
+                "message": "Post not found. Check Post ID",
+                "code": "POST_NOT_FOUND"
+            })
+            return;
+        }
+        res.status(200).json(response);
     }
 
 

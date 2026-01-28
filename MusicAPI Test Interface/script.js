@@ -2,13 +2,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const btn = document.getElementById("btn");
     const output_field = document.getElementById("output_field");
+    const url = "https://mt241063-10974.node.ustp.cloud"
+    //https://mt241063-10974.node.ustp.cloud
+    //http://localhost:3000
 
 // javascript - client: send JSON via POST and handle non-OK responses
+
 btn.addEventListener("click", async function () {
  
     //REGISTER USER
-    
-    const resp = await fetch("http://localhost:3000/auth/register", {
+   /*
+    const resp = await fetch(`${url}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,11 +25,11 @@ btn.addEventListener("click", async function () {
     const data = await resp.json();
     output_field.textContent = JSON.stringify(data);
   });
-  
+  */
 
   //LOGIN USER
   /*
-  const resp = await fetch("http://localhost:3000/auth/login", {
+  const resp = await fetch(`${url}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -40,7 +44,7 @@ btn.addEventListener("click", async function () {
     console.log(data.token)
   
 
-  const res = await fetch("http://localhost:3000/posts", {
+  const res = await fetch(`${url}/posts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -53,10 +57,20 @@ btn.addEventListener("click", async function () {
 
   console.log(JSON.stringify(await res.json()))
   
-});
 */
+  //Get POST
+  const resp = await fetch(`${url}/posts/4`, {
+      method: "GET",
+    });
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1lIiwiaWF0IjoxNzY5NTk4MTEwfQ.NjNTVi-ldfGcIF-NnuBf2y24LnjCz3MjGqnOcBPBxvA"; // z.B. aus localStorage
+    const data = await resp.json();
+    output_field.textContent = JSON.stringify(data);
+    console.log("####");
+    console.log(data);
+});
+
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1lIiwiaWF0IjoxNzY5NTk5MzQ0fQ.VmGgw-wxdgaMQcJCX6kYYx8Pg8YajZt-JjmqSo4UpLo"; // z.B. aus localStorage
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -64,7 +78,7 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const res = await fetch("http://localhost:3000/posts", {
+    const res = await fetch(`${url}/posts`, {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`

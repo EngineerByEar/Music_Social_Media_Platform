@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.envlocal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/auth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/AuthController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/AuthModel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/AuthService.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserConroller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserConroller.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserConroller.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserConroller.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserConroller.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserConroller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserConroller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserConroller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/auth.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/UserModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/UserModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/UserModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/UserModel.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/UserService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/UserService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js" afterDir="false" />
@@ -28,10 +30,12 @@
       <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/UserConroller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserConroller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AuthController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AuthController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/UserModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UserModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/AuthService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AuthService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../node_mt241063_10974.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../node_mt241063_10974.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,34 +67,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
-    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
-    "WebServerToolWindowPanel.toolwindow.show.date": "false",
-    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
-    "WebServerToolWindowPanel.toolwindow.show.size": "false",
-    "disable.download.node.interpreter.editor.notification": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "C:/Users/Mike/Desktop/FH/3. Semester/Music_Project/MusicAPI",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;disable.download.node.interpreter.editor.notification&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/Music_Project/MusicAPI&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mike\Desktop\FH\3. Semester\Music_Project\MusicAPI" />
@@ -131,6 +135,9 @@
       <workItem from="1769409848022" duration="1356000" />
       <workItem from="1769425834550" duration="786000" />
       <workItem from="1769436988637" duration="16503000" />
+      <workItem from="1769503848193" duration="8711000" />
+      <workItem from="1769531848835" duration="5983000" />
+      <workItem from="1769592077522" duration="3641000" />
     </task>
     <servers />
   </component>
@@ -142,7 +149,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/db.ts</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

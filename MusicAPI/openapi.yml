@@ -514,11 +514,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                ImageTooLarge:
-                  summary: Picture too large
-                  value:
-                    message: "The picture exceeds the maximum file size of 5MB"
-                    code: "IMAGE_TOO_LARGE"
+
                 InvalidInput:
                   summary: Invalid input
                   value:
@@ -786,7 +782,7 @@ components:
               format: url
               description: "Path to the Image file for the post"
               example: "localhost:3000/post_id/imagefilename.png"
-            post_likes:
+            post_likes_count:
               type: integer
               description: "Number of likes on that post"
               example: "24"

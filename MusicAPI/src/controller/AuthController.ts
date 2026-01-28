@@ -1,8 +1,6 @@
 import {Express, Request, Response} from 'express';
 import {AuthService} from "../service/AuthService.js"
 import {
-    IAuthLoginResponseConfirmed,
-    IAuthLoginResponseError,
     IAuthLoginUser,
     IAuthRegistration
 } from "../model/AuthModel.js";
@@ -54,6 +52,7 @@ export class AuthController{
     }
 
     static async login(req: Request, res: Response){
+        console.log("Made it to login");
         const user: IAuthLoginUser = req.body;
 
         if(!user.username || !user.password){

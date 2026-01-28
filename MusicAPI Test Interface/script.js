@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 btn.addEventListener("click", async function () {
  
     //REGISTER USER
-    /*
-    const resp = await fetch("https://mt241063-10974.node.ustp.cloud/auth/register", {
+    
+    const resp = await fetch("http://localhost:3000/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,11 +21,11 @@ btn.addEventListener("click", async function () {
     const data = await resp.json();
     output_field.textContent = JSON.stringify(data);
   });
-  */
+  
 
   //LOGIN USER
   /*
-  const resp = await fetch("https://mt241063-10974.node.ustp.cloud/auth/login", {
+  const resp = await fetch("http://localhost:3000/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -37,7 +37,45 @@ btn.addEventListener("click", async function () {
 
     const data = await resp.json();
     output_field.textContent = JSON.stringify(data);
-  });
+    console.log(data.token)
+  
 
+  const res = await fetch("http://localhost:3000/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${data.token}`
+    },
+    body: JSON.stringify({
+      post: "post :3"
+    })
+  })
+
+  console.log(JSON.stringify(await res.json()))
+  
+});
 */
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1lIiwiaWF0IjoxNzY5NTk4MTEwfQ.NjNTVi-ldfGcIF-NnuBf2y24LnjCz3MjGqnOcBPBxvA"; // z.B. aus localStorage
+
+document.getElementById("postForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const res = await fetch("http://localhost:3000/posts", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formData
+    });
+
+    const data = await res.json();
+    console.log(data);
+});
+
+
+
 })

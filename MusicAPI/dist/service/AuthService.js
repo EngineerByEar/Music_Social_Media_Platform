@@ -21,7 +21,7 @@ export class AuthService {
         const password = await hash(user.password, 10);
         //trying to create the new user in the database
         try {
-            const [inserted] = await DB.execute('INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `creation_time`) VALUES (NULL, ?, ?, ?, current_timestamp())', [user.username, user.email, password]);
+            const [inserted] = await DB.execute('INSERT INTO `users` (`username`, `email`, `password`, `creation_time`) VALUES (?, ?, ?, current_timestamp())', [user.username, user.email, password]);
             if (inserted.affectedRows < 1)
                 return "database error";
             return "created";

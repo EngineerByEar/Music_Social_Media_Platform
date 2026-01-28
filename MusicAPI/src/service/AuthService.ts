@@ -1,6 +1,5 @@
 import {
     IAuthLoginQuery,
-    IAuthLoginResponse,
     IAuthLoginUser,
     IAuthRegistration,
     IAuthRegistrationCheck
@@ -36,7 +35,7 @@ export class AuthService {
 
         //trying to create the new user in the database
         try {
-            const [ inserted ] = await DB.execute<ResultSetHeader>('INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `creation_time`) VALUES (NULL, ?, ?, ?, current_timestamp())', [user.username, user.email, password]);
+            const [ inserted ] = await DB.execute<ResultSetHeader>('INSERT INTO `users` (`username`, `email`, `password`, `creation_time`) VALUES (?, ?, ?, current_timestamp())', [user.username, user.email, password]);
             if(inserted.affectedRows < 1) return "database error";
             return "created";
         }catch(e){

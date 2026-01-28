@@ -6,6 +6,7 @@ import cors from "cors";
 import "dotenv/config";
 import { HealthController } from "./controller/HealthController.js";
 import { AuthController } from "./controller/AuthController.js";
+import { PostController } from "./controller/PostController.js";
 const PORT = process.env.PORT || 3000;
 const app = express();
 //Load API Documentation
@@ -19,6 +20,7 @@ app.use(cors());
 //Activate Controllers
 HealthController.init(app);
 AuthController.init(app);
+PostController.init(app);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

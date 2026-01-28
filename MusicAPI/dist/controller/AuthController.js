@@ -42,6 +42,7 @@ export class AuthController {
         }
     }
     static async login(req, res) {
+        console.log("Made it to login");
         const user = req.body;
         if (!user.username || !user.password) {
             res.status(400).json({

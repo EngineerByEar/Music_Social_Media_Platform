@@ -7,7 +7,10 @@ export function validateAuth(req, res, next) {
     try {
         const header = (req.headers.authorization ?? '').trim();
         if (!header.startsWith("Bearer")) {
-            res.status(401).send();
+            res.status(401).json({
+                "message": "No token provided",
+                "code": "NO TOKEN"
+            });
             return;
         }
         const token = header.substring('Bearer '.length);

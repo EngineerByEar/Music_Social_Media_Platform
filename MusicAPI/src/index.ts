@@ -1,6 +1,6 @@
 
 import express from "express";
-import type {Express, Request, Response} from "express";
+import type {Express} from "express";
 import swaggerUi from "swagger-ui-express";
 import fs from "fs";
 import path from "path";
@@ -10,6 +10,7 @@ import "dotenv/config";
 import {HealthController} from "./controller/HealthController.js";
 import {AuthController} from "./controller/AuthController.js";
 import {PostController} from "./controller/PostController.js";
+import {RecommendationController} from "./controller/RecommendationController.js";
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
@@ -30,6 +31,8 @@ app.use(cors());
 HealthController.init(app);
 AuthController.init(app);
 PostController.init(app);
+RecommendationController.init(app);
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

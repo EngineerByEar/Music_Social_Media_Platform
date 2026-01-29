@@ -18,6 +18,20 @@ export class PostController {
         const files = req.files;
         const image = files.post_image[0];
         const audio = files.post_audio[0];
+        if (audio.size > 25000000) {
+            res.status(400).json({
+                "message": "The audio file exceeds the maximum file size of 25MB",
+                "code": "AUDIO_TOO_LARGE"
+            });
+            return;
+        }
+        if (image.size > 5000000) {
+            res.status(400).json({
+                "message": "The image size exceeds the maximum file size of 5MB",
+                "code": "IMAGE_TOO_LARGE"
+            });
+            return;
+        }
         const data = {
             ...req.body,
             username: req.params._username
@@ -29,23 +43,23 @@ export class PostController {
             });
         }
         const post_id = await PostService.createPost(data);
-        const relative_public_url = path.join('uploads', 'posts', String(post_id));
+        const relative_public_url = path.posix.join('/uploads', 'posts', String(post_id));
         const post_dir = path.join(process.cwd(), relative_public_url);
         fs.mkdirSync(post_dir, { recursive: true });
         const audio_ext = path.extname(audio.originalname);
         const audio_path = path.join(post_dir, "audio" + audio_ext);
         fs.writeFileSync(audio_path, audio.buffer);
-        const audio_public_url = path.join(relative_public_url, 'audio' + audio_ext);
+        const audio_public_url = path.posix.join(relative_public_url, 'audio' + audio_ext);
         const image_ext = path.extname(image.originalname);
         const image_path = path.join(post_dir, "image" + image_ext);
         fs.writeFileSync(image_path, image.buffer);
-        const image_public_url = path.join(relative_public_url, 'image' + image_ext);
+        const image_public_url = path.posix.join(relative_public_url, 'image' + image_ext);
         const prev_path = path.join(post_dir, "preview.jpg");
         await sharp(image.buffer)
             .resize(300, 300, { fit: "inside" })
             .jpeg({ quality: 70 })
             .toFile(prev_path);
-        const prev_public_url = path.join(relative_public_url, 'prev.jpg');
+        const prev_public_url = path.posix.join(relative_public_url, 'prev.jpg');
         await PostService.add_post_files(post_id, audio_public_url, image_public_url, prev_public_url);
         const response = await PostService.get_post(post_id);
         if (response == "post_not_found") {

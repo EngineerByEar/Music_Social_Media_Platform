@@ -10,6 +10,7 @@ export class HealthController {
                 status: "OK",
                 message: "Database Connected"
             });
+            return;
         }
         else {
             res.status(404).json({

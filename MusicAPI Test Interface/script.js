@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const btn = document.getElementById("btn");
     const output_field = document.getElementById("output_field");
-    const url = "https://mt241063-10974.node.ustp.cloud"
+    const url = "http://localhost:3000"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
 
@@ -59,7 +59,12 @@ btn.addEventListener("click", async function () {
   
 */
   //Get POST
+  /*
   const resp = await fetch(`${url}/posts/4`, {
+      method: "GET",
+    });
+  */
+    const resp = await fetch(`${url}/guest/recommendations`, {
       method: "GET",
     });
 
@@ -67,6 +72,7 @@ btn.addEventListener("click", async function () {
     output_field.textContent = JSON.stringify(data);
     console.log("####");
     console.log(data);
+
 });
 
 

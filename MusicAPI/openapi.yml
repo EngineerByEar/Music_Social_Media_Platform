@@ -808,10 +808,14 @@ components:
           type: string
           description: "Title of the Post"
           example: "Greatest Post Ever!"
-        preview_image_path:
+        post_preview_image_url:
           type: string
           description: "Relative path of the preview image"
           example: "/uploads/post_id/prev.jpg"
+        like_count:
+          type: integer
+          description: "Number of likes on that post"
+          example: 3
 
 
     ProfileInformation:

@@ -51,7 +51,6 @@ paths:
                     message: "E-Mail is already used for another account"
                     code: "EMAIL_TAKEN"
 
-
   /auth/login:
     post:
       summary: "Login an existing user"
@@ -61,7 +60,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UserRegistration"
+              $ref: "#/components/schemas/UserLogin"
       responses:
         "200":
           description: "User logged in successfully"
@@ -75,6 +74,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+
+        "401":
+          description: "Wrong Credentials"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Wrong Username or Password"
+                code: "WRONG_CREDENTIALS"
 
   /users/self/content_preferences:
     patch:
@@ -504,17 +513,19 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
-              examples:
-                ImageTooLarge:
-                  summary: Picture too large
-                  value:
-                    message: "The picture exceeds the maximum file size of 5MB"
-                    code: "IMAGE_TOO_LARGE"
-                InvalidInput:
-                  summary: Invalid input
-                  value:
-                    message: "This is not a valid input."
-                    code: "INVALID_INPUT"
+              example:
+                message: "Invalid post ID (Not a Number or 0)"
+                code: "INVALID_POST_ID"
+        "404":
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Post not found. Check Post ID"
+                code: "POST_NOT_FOUND"
+
     patch:
       summary: "Change values of a already existing post"
       tags: [ Posts ]
@@ -629,6 +640,18 @@ components:
         email:
             type: string
             example: "email@themail.at"
+
+    UserLogin:
+      type: object
+      minProperties: 1
+      properties:
+        username:
+          type: string
+          example: "best_username_is_mike"
+        password:
+          type: string
+          example: "verysecretpassword"
+
 
     UserPublic:
       allOf:
@@ -758,14 +781,14 @@ components:
             post_audio_url:
               type: string
               format: url
-              description: "Path to the Audio file for the post"
-              example: "localhost:3000/post_id/audiofilename.mp3"
+              description: "Relative path to the Audio file for the post"
+              example: "/uploads/post_id/audio.mp3"
             post_image_url:
               type: string
               format: url
-              description: "Path to the Image file for the post"
-              example: "localhost:3000/post_id/imagefilename.png"
-            post_likes:
+              description: "Relative path to the Image file for the post"
+              example: "/uploads/post_id/image.jpg"
+            post_likes_count:
               type: integer
               description: "Number of likes on that post"
               example: "24"
@@ -785,10 +808,14 @@ components:
           type: string
           description: "Title of the Post"
           example: "Greatest Post Ever!"
-        preview_image_path:
+        post_preview_image_url:
           type: string
-          description: "Path of the preview image"
-          example: "localhost:3000/post_id/previewimagefilename.png"
+          description: "Relative path of the preview image"
+          example: "/uploads/post_id/prev.jpg"
+        like_count:
+          type: integer
+          description: "Number of likes on that post"
+          example: 3
 
 
     ProfileInformation:

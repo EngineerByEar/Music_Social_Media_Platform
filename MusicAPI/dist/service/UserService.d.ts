@@ -1,5 +1,7 @@
-import { IUserRegistration } from "../model/UserModel.js";
+export interface IUserIdRow {
+    user_id: number;
+}
 export declare class UserService {
-    static register_user(user: IUserRegistration): Promise<"username_conflict" | "email_conflict" | "database error" | "created">;
+    static getUserId(username: string): Promise<number | undefined>;
 }
 //# sourceMappingURL=UserService.d.ts.map

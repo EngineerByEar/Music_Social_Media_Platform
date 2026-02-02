@@ -111,7 +111,7 @@ export class UserController {
     static async update_profile(req, res) {
         const profile_picture = req.file;
         //Checking for missing fields
-        if (!req.params.username) {
+        if (!req.params._username) {
             res.status(401).json({
                 message: "Missing or Expired Token",
                 code: "INVALID_CREDENTIALS"
@@ -147,9 +147,9 @@ export class UserController {
         fs.mkdirSync(profile_dir, { recursive: true });
         const image_ext = path.extname(profile_picture.originalname);
         const image_path = path.join(profile_dir, "profile_picture" + image_ext);
-        const public_profile_image_url = path.join(relative_public_url, "profile_picture" + image_ext);
+        const public_profile_image_url = path.posix.join(relative_public_url, "profile_picture" + image_ext);
         fs.writeFileSync(image_path, profile_picture.buffer);
-        const prev_path = path.join(profile_dir, "prev.jpg");
+        const prev_path = path.posix.join(profile_dir, "prev.jpg");
         await sharp(profile_picture.buffer)
             .resize(300, 300, { fit: "inside" })
             .jpeg({ quality: 70 })

@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const btn = document.getElementById("btn");
     const output_field = document.getElementById("output_field");
-    const url = "http://localhost:3000"
+    const url = "https://mt241063-10974.node.ustp.cloud"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
 
@@ -16,8 +16,8 @@ btn.addEventListener("click", async function () {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: "mq",
-        email: "m2@ui.at",
+        username: "ma",
+        email: "ma@ui.at",
         password: "me"
       })
     });

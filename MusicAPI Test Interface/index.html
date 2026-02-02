@@ -73,10 +73,10 @@ async function submitProfile() {
   formData.append("profile_picture", image);
 
   try {
-    const res = await fetch(`http://localhost:3000/users/self/profile`, {
+    const res = await fetch(`https://mt241063-10974.node.ustp.cloud/users/self/profile`, {
       method: "PATCH",
       headers: {
-        "Authorization": token.startsWith("Bearer ") ? token : `Bearer ${token}`
+        "Authorization": `Bearer ${token}`
       },
       body: formData
     });

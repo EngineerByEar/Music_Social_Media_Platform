@@ -110,7 +110,7 @@ export class UserService {
         const result = await DB.execute(`
         UPDATE profile
         SET profile_picture_url = ?,
-            profile_picture_preview_url = ?,
+            preview_profile_picture_url = ?,
             profile_description = ?
         WHERE user_id = ?`, [data.profile_image_url, data.profile_image_preview_url, data.profile_description, data.user_id]);
         return "updated";

@@ -61,6 +61,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/UserLogin"
+
       responses:
         "200":
           description: "User logged in successfully"
@@ -68,6 +69,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AuthSuccessfulResponse"
+
         "400":
           description: "Bad Request"
           content:
@@ -100,12 +102,39 @@ paths:
       responses:
         "200":
           description: "Preferences updated successfully"
+        "400":
+          description: "No changes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "No changes made"
+                code: "NO_CHANGES"
         "401":
           description: "Unauthorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                INVALID_CREDEMTIALS:
+                  value:
+                    message: "Missing or Expired Token"
+                    code: "INVALID_CREDENTIALS"
+                EXPIRED TOKEN:
+                  value:
+                    message: "Missing User. Probably expired token"
+                    code: "Expired Token"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/self/ui_settings:
     patch:
@@ -122,12 +151,39 @@ paths:
       responses:
         "200":
           description: "Preferences updated successfully"
+        "400":
+          description: "No changes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "No changes made"
+                code: "NO_CHANGES"
         "401":
           description: "Unauthorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                INVALID_CREDEMTIALS:
+                  value:
+                    message: "Missing or Expired Token"
+                    code: "INVALID_CREDENTIALS"
+                EXPIRED TOKEN:
+                  value:
+                    message: "Missing User. Probably expired token"
+                    code: "Expired Token"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/self/profile:
     patch:
@@ -159,6 +215,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/{username}/loadprofile:
     get:
@@ -187,6 +252,7 @@ paths:
               example:
                 message: "The Picture exceeds the maximum file size of 5MB"
                 code: "IMAGE_TOO_LARGE"
+
 
   /users/self/history:
     get:
@@ -829,6 +895,14 @@ components:
           type: string
           description: "Description of a profile"
           example: "Welcome to my profile"
+        profile_image_url:
+          type: string
+          description: "Relative URL that links to the profile picture"
+          example: "/uploads/profiles/{user_id}/profile_picture.jpg"
+        profile_image_preview_url:
+          type: string
+          description: "Relative URL that links to the profile picture"
+          example: "/uploads/profiles/{user_id}/prev.jpg"
 
     ProfilePageResponse:
       allOf:
@@ -882,6 +956,10 @@ components:
           $ref: "#/components/schemas/AccessToken"
         user:
           $ref: "#/components/schemas/UserPublic"
+        content_preferences:
+          $ref: "#/components/schemas/UserContentPreferences"
+        ui_settings:
+          $ref: "#/components/schemas/UserUISettings"
 
     ErrorMessage:
       type: object

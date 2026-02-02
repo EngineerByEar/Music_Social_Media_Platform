@@ -18,7 +18,6 @@ export class AuthService {
         const rows = query[0] as IAuthRegistrationCheck[];
         if(rows.length > 0){
             const result = rows[0];
-            console.log(result);
             // @ts-ignore
             if(result.username == user.username){
                 return "username_conflict";

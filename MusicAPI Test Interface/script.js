@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const btn = document.getElementById("btn");
     const output_field = document.getElementById("output_field");
-    const url = "https://mt241063-10974.node.ustp.cloud"
+    const url = "http://localhost:3000"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 btn.addEventListener("click", async function () {
  
     //REGISTER USER
-   
+    /*
     const resp = await fetch(`${url}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,17 +25,17 @@ btn.addEventListener("click", async function () {
     const data = await resp.json();
     output_field.textContent = JSON.stringify(data);
   });
-  
+    */
   
 
   //LOGIN USER
-  /*
+  
   const resp = await fetch(`${url}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: "mq",
-        email: "m2@ui.at",
+        username: "ma",
+        email: "ma@ui.at",
         password: "me"
       })
     });
@@ -45,7 +45,8 @@ btn.addEventListener("click", async function () {
     console.log(data.token)
 
   });
-  */
+  
+
   /*
 
   const res = await fetch(`${url}/posts`, {
@@ -122,7 +123,7 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
     output_field.textContent = JSON.stringify(data);
   });
   */
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1lIiwiaWF0IjoxNzY5NTk5MzQ0fQ.VmGgw-wxdgaMQcJCX6kYYx8Pg8YajZt-JjmqSo4UpLo"; // z.B. aus localStorage
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -130,7 +131,7 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const res = await fetch(`${url}/posts`, {
+    const res = await fetch(`${url}/post`, {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`
@@ -145,3 +146,4 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
 
 
 })
+

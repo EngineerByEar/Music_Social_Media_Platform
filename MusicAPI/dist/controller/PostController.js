@@ -8,16 +8,17 @@ const storage = multer.memoryStorage();
 export const upload = multer({ storage });
 export class PostController {
     static async init(app) {
-        app.post("/posts", validateAuth, upload.fields([
+        app.post("/post", validateAuth, upload.fields([
             { name: "post_image", maxCount: 1 },
             { name: "post_audio", maxCount: 1 },
         ]), PostController.upload_post);
-        app.get("/posts/:post_id", PostController.get_post);
+        app.get("/post/:post_id", PostController.get_post);
     }
     static async upload_post(req, res) {
         const files = req.files;
         const image = files.post_image[0];
         const audio = files.post_audio[0];
+        //Error handling for files
         if (audio.size > 25000000) {
             res.status(400).json({
                 "message": "The audio file exceeds the maximum file size of 25MB",
@@ -36,13 +37,15 @@ export class PostController {
             ...req.body,
             username: req.params._username
         };
-        if (!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genre || !image || !audio) {
+        if (!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genres || !image || !audio) {
             return res.status(400).json({
                 "message": "Missing required fields",
                 "code": "MISSING_FIELDS"
             });
         }
+        //Create Post
         const post_id = await PostService.createPost(data);
+        //Create URLs to save post
         const relative_public_url = path.posix.join('/uploads', 'posts', String(post_id));
         const post_dir = path.join(process.cwd(), relative_public_url);
         fs.mkdirSync(post_dir, { recursive: true });
@@ -59,8 +62,16 @@ export class PostController {
             .resize(300, 300, { fit: "inside" })
             .jpeg({ quality: 70 })
             .toFile(prev_path);
-        const prev_public_url = path.posix.join(relative_public_url, 'prev.jpg');
+        const prev_public_url = path.posix.join(relative_public_url, 'preview.jpg');
+        //Add File URLs to Database
         await PostService.add_post_files(post_id, audio_public_url, image_public_url, prev_public_url);
+        //Add Audio Genres to Database
+        await PostService.add_post_genres(post_id, data.post_audio_genres);
+        //Add Post Tags to Database
+        if (data.post_tags) {
+            await PostService.add_post_tags(post_id, data.post_tags);
+        }
+        //Get Post Information for Response
         const response = await PostService.get_post(post_id);
         if (response == "post_not_found") {
             res.status(404).json({
@@ -69,6 +80,7 @@ export class PostController {
             });
             return;
         }
+        //Send Response
         res.status(200).json(response);
     }
     static async get_post(req, res) {

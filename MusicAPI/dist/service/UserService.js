@@ -48,7 +48,6 @@ export class UserService {
             return "database error | no settings changed";
         }
         else {
-            console.log("content_preferences updated");
             return "updated";
         }
     }
@@ -59,8 +58,6 @@ export class UserService {
         const genre_query = await DB.query(`Select preferred_genre from preferredgenres where user_id = ?`, [user_id]);
         const genre_rows = genre_query[0];
         const preferred_genres = genre_rows.map(g => g.preferred_genre);
-        console.log(preferred_genres);
-        console.log(content_preferences);
         if (!preferred_genres || !content_preferences) {
             return "Error loading preferences";
         }
@@ -120,7 +117,6 @@ export class UserService {
         INSERT INTO profile
         (user_id, profile_picture_url, profile_description, preview_profile_picture_url)
         VALUES(?, ?, ?, ?)`, [user_id, image_url, default_description, prev_url]);
-        console.log(result);
         if (!result) {
             return "Error initialising profile";
         }

@@ -65,7 +65,6 @@ export class AuthController{
     }
 
     static async login(req: Request, res: Response){
-        console.log("Made it to login");
         const user: IAuthLoginUser = req.body;
 
         if(!user.username || !user.password){

@@ -799,7 +799,7 @@ components:
           description: "Tags to be associated with the post"
           example: [ "chill", "dnb", "great culture" ]
 
-        post_audio_genre:
+        post_audio_genres:
           type: array
           description: "Genre of the post audio. Separate from post_tags"
           items:
@@ -811,7 +811,7 @@ components:
           - $ref: "#/components/schemas/PostBase"
           - $ref: "#/components/schemas/PostUpdateableParameters"
           - type: object
-            required: [post_audio, post_image, post_audio_genre]
+            required: [post_audio, post_image, post_audio_genres]
             properties:
 
               post_audio:
@@ -862,6 +862,14 @@ components:
               type: integer
               description: "Number of comments on that post"
               example: "3"
+            post_audio_genres:
+              type: array
+              description: "Audio Genres that were associated when the post was created"
+              example: ["Reggae", "Rock"]
+            post_tags:
+              type: array
+              description: "Tags that are associated when the post was created. May be empty!"
+              example: ["Tag", "Tag2"]
 
     PostPreview:
       type: object
@@ -877,8 +885,8 @@ components:
         post_preview_image_url:
           type: string
           description: "Relative path of the preview image"
-          example: "/uploads/post_id/prev.jpg"
-        like_count:
+          example: "/uploads/post_id/preview.jpg"
+        post_likes_count:
           type: integer
           description: "Number of likes on that post"
           example: 3

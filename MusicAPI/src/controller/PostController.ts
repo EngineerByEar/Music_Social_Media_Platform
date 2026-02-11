@@ -13,15 +13,16 @@ export const upload = multer({ storage });
 export class PostController{
 
     static async init(app:Express){
-        app.post("/posts", validateAuth, upload.fields([
+        app.post("/post", validateAuth, upload.fields([
             {name: "post_image", maxCount: 1},
             {name: "post_audio", maxCount: 1},
         ]), PostController.upload_post);
-        app.get("/posts/:post_id", PostController.get_post);
+        app.get("/post/:post_id", PostController.get_post);
 
     }
 
     static async upload_post(req: Request, res: Response){
+
         const files = req.files as {
             post_image: Express.Multer.File[];
             post_audio: Express.Multer.File[];
@@ -30,61 +31,74 @@ export class PostController{
         const image = files.post_image[0]!;
         const audio = files.post_audio[0]!;
 
-        if(audio.size > 25000000){
-            res.status(400).json({
-                "message": "The audio file exceeds the maximum file size of 25MB",
-                "code": "AUDIO_TOO_LARGE"
-            })
-            return;
-        }
+        //Error handling for files
+            if(audio.size > 25000000){
+                res.status(400).json({
+                    "message": "The audio file exceeds the maximum file size of 25MB",
+                    "code": "AUDIO_TOO_LARGE"
+                })
+                return;
+            }
 
-        if(image.size > 5000000){
-            res.status(400).json({
-                "message": "The image size exceeds the maximum file size of 5MB",
-                "code": "IMAGE_TOO_LARGE"
-            })
-            return;
-        }
+            if(image.size > 5000000){
+                res.status(400).json({
+                    "message": "The image size exceeds the maximum file size of 5MB",
+                    "code": "IMAGE_TOO_LARGE"
+                })
+                return;
+            }
 
-        const data: ICreatePostRequest = {
-            ...req.body,
-            username: req.params._username
-        };
+            const data: ICreatePostRequest = {
+                ...req.body,
+                username: req.params._username
+            };
 
-        if(!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genre || !image || !audio){
-            return res.status(400).json({
-                "message": "Missing required fields",
-                "code": "MISSING_FIELDS"
-            })
-        }
+            if(!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genres || !image || !audio){
+                return res.status(400).json({
+                    "message": "Missing required fields",
+                    "code": "MISSING_FIELDS"
+                })
+            }
 
-        const post_id = await PostService.createPost(data);
+        //Create Post
+            const post_id = await PostService.createPost(data);
 
-        const relative_public_url = path.posix.join('/uploads', 'posts', String(post_id));
-        const post_dir = path.join(process.cwd(), relative_public_url);
-        fs.mkdirSync(post_dir, { recursive: true });
-
-
-        const audio_ext = path.extname(audio.originalname);
-        const audio_path = path.join(post_dir, "audio" + audio_ext);
-        fs.writeFileSync(audio_path, audio.buffer);
-        const audio_public_url = path.posix.join(relative_public_url, 'audio' + audio_ext);
-
-        const image_ext = path.extname(image.originalname);
-        const image_path = path.join(post_dir, "image" + image_ext);
-        fs.writeFileSync(image_path, image.buffer);
-        const image_public_url = path.posix.join(relative_public_url, 'image' + image_ext);
+        //Create URLs to save post
+            const relative_public_url = path.posix.join('/uploads', 'posts', String(post_id));
+            const post_dir = path.join(process.cwd(), relative_public_url);
+            fs.mkdirSync(post_dir, { recursive: true });
 
 
-        const prev_path = path.join(post_dir, "preview.jpg");
-        await sharp(image.buffer)
-            .resize(300, 300, {fit: "inside" })
-            .jpeg({quality: 70})
-            .toFile(prev_path)
-        const prev_public_url = path.posix.join(relative_public_url, 'prev.jpg');
+            const audio_ext = path.extname(audio.originalname);
+            const audio_path = path.join(post_dir, "audio" + audio_ext);
+            fs.writeFileSync(audio_path, audio.buffer);
+            const audio_public_url = path.posix.join(relative_public_url, 'audio' + audio_ext);
 
+            const image_ext = path.extname(image.originalname);
+            const image_path = path.join(post_dir, "image" + image_ext);
+            fs.writeFileSync(image_path, image.buffer);
+            const image_public_url = path.posix.join(relative_public_url, 'image' + image_ext);
+
+
+            const prev_path = path.join(post_dir, "preview.jpg");
+            await sharp(image.buffer)
+                .resize(300, 300, {fit: "inside" })
+                .jpeg({quality: 70})
+                .toFile(prev_path)
+            const prev_public_url = path.posix.join(relative_public_url, 'preview.jpg');
+
+        //Add File URLs to Database
         await PostService.add_post_files(post_id, audio_public_url, image_public_url, prev_public_url);
 
+        //Add Audio Genres to Database
+        await PostService.add_post_genres(post_id, data.post_audio_genres);
+
+        //Add Post Tags to Database
+        if(data.post_tags){
+            await PostService.add_post_tags(post_id, data.post_tags);
+        }
+
+        //Get Post Information for Response
         const response = await PostService.get_post(post_id);
 
         if (response == "post_not_found") {
@@ -94,6 +108,7 @@ export class PostController{
             })
             return;
         }
+        //Send Response
         res.status(200).json(response);
 
     }

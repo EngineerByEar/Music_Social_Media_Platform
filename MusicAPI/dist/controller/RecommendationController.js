@@ -1,7 +1,6 @@
 import { RecommendationService } from "../service/RecommendationService.js";
 export class RecommendationController {
     static async init(app) {
-        console.log("RecommendationController init");
         app.get('/guest/recommendations', RecommendationController.guest_recommendations);
     }
     static async guest_recommendations(req, res) {

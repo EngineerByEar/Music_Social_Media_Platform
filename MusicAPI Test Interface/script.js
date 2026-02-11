@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const url = "http://localhost:3000"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
-
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
 // javascript - client: send JSON via POST and handle non-OK responses
 
 btn.addEventListener("click", async function () {
@@ -29,7 +29,7 @@ btn.addEventListener("click", async function () {
   
 
   //LOGIN USER
-  
+  /*
   const resp = await fetch(`${url}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -45,7 +45,7 @@ btn.addEventListener("click", async function () {
     console.log(data.token)
 
   });
-  
+  */
 
   /*
 
@@ -123,7 +123,40 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
     output_field.textContent = JSON.stringify(data);
   });
   */
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
+
+  //Create Comment
+  /*
+  const post_id = 3;
+  const resp = await fetch(`${url}/interactions/posts/${post_id}/comment`, {
+    method: "POST",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      comment: "Testtesttest"
+    })
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+  */
+
+//Get All Comments for a POST
+
+ const post_id = 3;
+  const resp = await fetch(`${url}/post/3/comments`);
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+
+
+  
+ token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {
     e.preventDefault();

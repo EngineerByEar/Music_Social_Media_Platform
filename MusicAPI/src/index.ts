@@ -12,6 +12,7 @@ import {AuthController} from "./controller/AuthController.js";
 import {PostController} from "./controller/PostController.js";
 import {RecommendationController} from "./controller/RecommendationController.js";
 import {UserController} from "./controller/UserController.js";
+import {InteractionController} from "./controller/InteractionController.js";
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
@@ -34,6 +35,7 @@ AuthController.init(app);
 PostController.init(app);
 RecommendationController.init(app);
 UserController.init(app);
+InteractionController.init(app);
 
 
 app.listen(PORT, () => {

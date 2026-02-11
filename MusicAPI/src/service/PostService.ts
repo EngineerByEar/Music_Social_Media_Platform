@@ -1,5 +1,5 @@
 import {UserService} from "./UserService.js";
-import {ICreatePostRequest, IPostResponse, IPostQuery} from "../model/PostModel.js";
+import {ICreatePostRequest, IPostResponse, IPostQuery, ICommentResponse} from "../model/PostModel.js";
 import {FieldPacket, QueryResult, ResultSetHeader} from "mysql2";
 import {DB} from "../db.js";
 
@@ -38,7 +38,6 @@ export class PostService {
 
     static async get_post(post_id: number){
 
-        console.log(await DB.query(`SELECT VERSION()`));
         const query:[QueryResult, FieldPacket[]] = await DB.execute<ResultSetHeader>(
            `Select
                     p.post_title,
@@ -63,6 +62,7 @@ export class PostService {
             }
         const rows = query[0] as IPostQuery[];
         const row = rows[0] as IPostQuery;
+        //Converting Group_Concat to array
         return {
             ...row,
             post_audio_genres: row.post_audio_genres
@@ -72,6 +72,17 @@ export class PostService {
                 ? row.post_tags.split(",")
                 :[]
         } as IPostResponse;
+    }
+
+    static async get_all_comments(post_id: number){
+        const query = await DB.query(`
+            SELECT username, comment, date_time 
+            FROM comments
+            WHERE post_id = ${post_id}
+            ORDER BY comment_time DESC`);
+
+        return query[0] as ICommentResponse[]
+
     }
 
 }

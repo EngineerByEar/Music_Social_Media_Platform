@@ -25,7 +25,6 @@ export class PostService {
         }
     }
     static async get_post(post_id) {
-        console.log(await DB.query(`SELECT VERSION()`));
         const query = await DB.execute(`Select
                     p.post_title,
                     p.post_description,
@@ -47,6 +46,7 @@ export class PostService {
         }
         const rows = query[0];
         const row = rows[0];
+        //Converting Group_Concat to array
         return {
             ...row,
             post_audio_genres: row.post_audio_genres
@@ -56,6 +56,14 @@ export class PostService {
                 ? row.post_tags.split(",")
                 : []
         };
+    }
+    static async get_all_comments(post_id) {
+        const query = await DB.query(`
+            SELECT username, comment, date_time 
+            FROM comments
+            WHERE post_id = ${post_id}
+            ORDER BY comment_time DESC`);
+        return query[0];
     }
 }
 //# sourceMappingURL=PostService.js.map

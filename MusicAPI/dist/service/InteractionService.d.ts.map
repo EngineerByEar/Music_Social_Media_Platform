@@ -1,0 +1,1 @@
+{"version":3,"file":"InteractionService.d.ts","sourceRoot":"","sources":["../../src/service/InteractionService.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,aAAa,EAAE,eAAe,EAAC,MAAM,8BAA8B,CAAC;AAK5E,qBAAa,kBAAkB;WACd,WAAW,CAAC,IAAI,EAAC,eAAe;WAShC,WAAW,CAAC,UAAU,EAAE,MAAM;CAU9C"}

@@ -29,3 +29,9 @@ export interface IPostQuery{
     post_tags?: string;
     post_audio_genres: string;
 }
+
+export interface ICommentResponse{
+    username: string;
+    comment: string;
+    comment_time: string;
+}

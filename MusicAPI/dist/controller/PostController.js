@@ -13,6 +13,7 @@ export class PostController {
             { name: "post_audio", maxCount: 1 },
         ]), PostController.upload_post);
         app.get("/post/:post_id", PostController.get_post);
+        app.get("/post/:post_id/comments", PostController.get_comments);
     }
     static async upload_post(req, res) {
         const files = req.files;
@@ -100,6 +101,18 @@ export class PostController {
             });
             return;
         }
+        res.status(200).json(response);
+    }
+    static async get_comments(req, res) {
+        console.log("Getting comments...");
+        const post_id = Number(req.params.post_id);
+        if (isNaN(post_id) || post_id == 0) {
+            res.status(400).json({
+                "message": "Input is not a number or 0",
+                "code": "INVALID_INPUT"
+            });
+        }
+        const response = await PostService.get_all_comments(post_id);
         res.status(200).json(response);
     }
 }

@@ -3,7 +3,6 @@ import {RecommendationService} from "../service/RecommendationService.js"
 
 export class RecommendationController{
     static async init(app: Express){
-        console.log("RecommendationController init");
         app.get('/guest/recommendations' , RecommendationController.guest_recommendations)
     }
 

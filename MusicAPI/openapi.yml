@@ -61,6 +61,7 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/UserLogin"
+
       responses:
         "200":
           description: "User logged in successfully"
@@ -68,6 +69,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/AuthSuccessfulResponse"
+
         "400":
           description: "Bad Request"
           content:
@@ -100,12 +102,39 @@ paths:
       responses:
         "200":
           description: "Preferences updated successfully"
+        "400":
+          description: "No changes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "No changes made"
+                code: "NO_CHANGES"
         "401":
           description: "Unauthorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                INVALID_CREDEMTIALS:
+                  value:
+                    message: "Missing or Expired Token"
+                    code: "INVALID_CREDENTIALS"
+                EXPIRED TOKEN:
+                  value:
+                    message: "Missing User. Probably expired token"
+                    code: "Expired Token"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/self/ui_settings:
     patch:
@@ -122,12 +151,39 @@ paths:
       responses:
         "200":
           description: "Preferences updated successfully"
+        "400":
+          description: "No changes"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "No changes made"
+                code: "NO_CHANGES"
         "401":
           description: "Unauthorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                INVALID_CREDEMTIALS:
+                  value:
+                    message: "Missing or Expired Token"
+                    code: "INVALID_CREDENTIALS"
+                EXPIRED TOKEN:
+                  value:
+                    message: "Missing User. Probably expired token"
+                    code: "Expired Token"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/self/profile:
     patch:
@@ -159,6 +215,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
+        "404":
+          description: "Missing Fields"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing Fields"
+                code: "MISSING_FIELDS"
 
   /users/{username}/loadprofile:
     get:
@@ -187,6 +252,7 @@ paths:
               example:
                 message: "The Picture exceeds the maximum file size of 5MB"
                 code: "IMAGE_TOO_LARGE"
+
 
   /users/self/history:
     get:
@@ -422,7 +488,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
-                message: "Comment field is empty"
+                message: "Missing fields. Comment field is probably empty"
                 code: "MISSING_FIELDS"
         "401":
           description: "Unauthorized"
@@ -431,7 +497,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
-                message: "You need to be logged in in order to store watchtime"
+                message: "You need to be logged in in order to add a comment"
                 code: "NOT_LOGGED_IN"
 
   
@@ -602,15 +668,10 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                ImageTooLarge:
-                  summary: Picture too large
-                  value:
-                    message: "The picture exceeds the maximum file size of 5MB"
-                    code: "IMAGE_TOO_LARGE"
                 InvalidInput:
                   summary: Invalid input
                   value:
-                    message: "This is not a valid input."
+                    message: "Input is not a number or 0"
                     code: "INVALID_INPUT"
 
 components:
@@ -733,7 +794,7 @@ components:
           description: "Tags to be associated with the post"
           example: [ "chill", "dnb", "great culture" ]
 
-        post_audio_genre:
+        post_audio_genres:
           type: array
           description: "Genre of the post audio. Separate from post_tags"
           items:
@@ -745,7 +806,7 @@ components:
           - $ref: "#/components/schemas/PostBase"
           - $ref: "#/components/schemas/PostUpdateableParameters"
           - type: object
-            required: [post_audio, post_image, post_audio_genre]
+            required: [post_audio, post_image, post_audio_genres]
             properties:
 
               post_audio:
@@ -796,6 +857,14 @@ components:
               type: integer
               description: "Number of comments on that post"
               example: "3"
+            post_audio_genres:
+              type: array
+              description: "Audio Genres that were associated when the post was created"
+              example: ["Reggae", "Rock"]
+            post_tags:
+              type: array
+              description: "Tags that are associated when the post was created. May be empty!"
+              example: ["Tag", "Tag2"]
 
     PostPreview:
       type: object
@@ -811,8 +880,8 @@ components:
         post_preview_image_url:
           type: string
           description: "Relative path of the preview image"
-          example: "/uploads/post_id/prev.jpg"
-        like_count:
+          example: "/uploads/post_id/preview.jpg"
+        post_likes_count:
           type: integer
           description: "Number of likes on that post"
           example: 3
@@ -829,6 +898,14 @@ components:
           type: string
           description: "Description of a profile"
           example: "Welcome to my profile"
+        profile_image_url:
+          type: string
+          description: "Relative URL that links to the profile picture"
+          example: "/uploads/profiles/{user_id}/profile_picture.jpg"
+        profile_image_preview_url:
+          type: string
+          description: "Relative URL that links to the profile picture"
+          example: "/uploads/profiles/{user_id}/prev.jpg"
 
     ProfilePageResponse:
       allOf:
@@ -851,7 +928,7 @@ components:
           type: string
           description: "Comment made by the user"
           example: "Great post!"
-        date_time:
+        comment_time:
           type: string
           format: date-time
           description: "Time when the comment was posted"
@@ -882,6 +959,10 @@ components:
           $ref: "#/components/schemas/AccessToken"
         user:
           $ref: "#/components/schemas/UserPublic"
+        content_preferences:
+          $ref: "#/components/schemas/UserContentPreferences"
+        ui_settings:
+          $ref: "#/components/schemas/UserUISettings"
 
     ErrorMessage:
       type: object

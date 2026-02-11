@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/controller/InteractionController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/InteractionModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/InteractionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PostModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/PostService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/6/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/6/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/7/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/7/preview.jpg" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_C:/Users/Mike/Desktop/FH/3. Semester/Music_Project/MusicAPI" value="38ZHNGMmcsYWDM9JczvGjBACaHL" />
+      <entry key="_C:/Users/Mike/Desktop/FH/3.Semester/WF/Music_Project/MusicAPI" value="38nCyAYuKxhvFk5KvU4q3BLiQO3" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="38ZHNGMmcsYWDM9JczvGjBACaHL" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.mappings&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.highlight.symlinks&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.date&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.permissions&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowPanel.toolwindow.show.size&quot;: &quot;false&quot;,
+    &quot;disable.download.node.interpreter.editor.notification&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/Music_Project/MusicAPI&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mike\Desktop\FH\3. Semester\Music_Project\MusicAPI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mike\Desktop\FH\3. Semester\Music_Project\MusicAPI\src\service" />
+      <recent name="C:\Users\Mike\Desktop\FH\3. Semester\Music_Project\MusicAPI\src" />
+      <recent name="C:\Users\Mike\Desktop\FH\3. Semester\MusicAPI\src" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.242" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="" />
+      <created>1769000133206</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769000133206</updated>
+      <workItem from="1769000134961" duration="415000" />
+      <workItem from="1769000558019" duration="9038000" />
+      <workItem from="1769011989180" duration="1162000" />
+      <workItem from="1769013181196" duration="2658000" />
+      <workItem from="1769069615389" duration="1933000" />
+      <workItem from="1769075457550" duration="6550000" />
+      <workItem from="1769157116355" duration="21418000" />
+      <workItem from="1769182104854" duration="7343000" />
+      <workItem from="1769199549957" duration="2756000" />
+      <workItem from="1769249400383" duration="17569000" />
+      <workItem from="1769341907487" duration="7512000" />
+      <workItem from="1769366833810" duration="2928000" />
+      <workItem from="1769384559087" duration="994000" />
+      <workItem from="1769409848022" duration="1356000" />
+      <workItem from="1769425834550" duration="786000" />
+      <workItem from="1769436988637" duration="16503000" />
+      <workItem from="1769503848193" duration="8711000" />
+      <workItem from="1769531848835" duration="5983000" />
+      <workItem from="1769592077522" duration="13698000" />
+      <workItem from="1769611521147" duration="3923000" />
+      <workItem from="1769615640686" duration="1005000" />
+      <workItem from="1770025059404" duration="15141000" />
+      <workItem from="1770054524772" duration="5971000" />
+      <workItem from="1770741235751" duration="4402000" />
+      <workItem from="1770755076772" duration="203000" />
+      <workItem from="1770755299911" duration="41000" />
+      <workItem from="1770797059327" duration="10041000" />
+      <workItem from="1770809602500" duration="1736000" />
+      <workItem from="1770811361219" duration="332000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/db.ts</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

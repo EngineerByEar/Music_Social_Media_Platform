@@ -7,7 +7,6 @@ export class AuthService {
         const rows = query[0];
         if (rows.length > 0) {
             const result = rows[0];
-            console.log(result);
             // @ts-ignore
             if (result.username == user.username) {
                 return "username_conflict";
@@ -35,7 +34,7 @@ export class AuthService {
         const query = await DB.query('Select `username`, `password`, `user_id`, `email` from `users` where `username` = ?', [user.username]);
         const rows = query[0];
         const user_data = rows[0];
-        const is_valid = compare(user.password, user_data.password);
+        const is_valid = await compare(user.password, user_data.password);
         if (!is_valid) {
             return {
                 message: "wrong_username_or_password"

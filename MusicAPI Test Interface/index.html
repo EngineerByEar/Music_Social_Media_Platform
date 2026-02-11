@@ -12,6 +12,8 @@
     </button>
     <p id="output_field"></p>
 
+
+    <h2>Upload Post</h2>
     <form id="postForm">
     <input type="text" name="post_title" required>
     <textarea name="post_description" required></textarea>
@@ -19,10 +21,76 @@
     <input type="file" name="post_image" accept="image/*" required>
     <input type="file" name="post_audio" accept="audio/*" required>
 
-    <input type="text" name="post_audio_genre[]" required>
+    <input type="text" name="post_audio_genres[]" required>
     <input type="text" name="post_tags[]">
 
     <button type="submit">Senden</button>
+
+
+
+    <h2>Update Profile</h2>
+
+<label>
+  Username:
+  <input type="text" id="username" placeholder="mq">
+</label>
+<br><br>
+
+<label>
+  JWT Token:
+  <input type="text" id="token" placeholder="Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1xIiwiaWF0IjoxNzcwMDMxNjk0fQ.4uPvNNYdv8D-RDlMvlocgY5Et0o9r8DDT4ZPKqkxozs">
+</label>
+<br><br>
+
+<label>
+  Profile Description:
+  <input type="text" id="description">
+</label>
+<br><br>
+
+<label>
+  Profile Picture:
+  <input type="file" id="image" accept="image/*">
+</label>
+<br><br>
+
+<button onclick="submitProfile()">Upload</button>
+
+<pre id="output"></pre>
+
+<script>
+async function submitProfile() {
+  const username = document.getElementById("username").value;
+  const token = document.getElementById("token").value;
+  const description = document.getElementById("description").value;
+  const image = document.getElementById("image").files[0];
+  const output = document.getElementById("output");
+
+  if (!username || !token || !description || !image) {
+    output.textContent = "Missing fields";
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("profile_description", description);
+  formData.append("profile_picture", image);
+
+  try {
+    const res = await fetch(`https://mt241063-10974.node.ustp.cloud/users/self/profile`, {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      },
+      body: formData
+    });
+
+    const text = await res.text();
+    output.textContent = `Status: ${res.status}\nResponse: ${text || "OK"}`;
+  } catch (err) {
+    output.textContent = "Request failed: " + err;
+  }
+}
+</script>
 </form>
 
 

@@ -45,14 +45,16 @@ export class PostService {
                     p.post_id,
                     pf.post_audio_url,
                     pf.post_image_url,
-                    (select count(*) from likes l where l.post_id = p.post_id) as likes_count,
-                    (select count(*) from comments c where c.post_id = p.post_id) as comments_count,
+                    (select count(*) from watchtime w where w.post_id = p.post_id) as post_views_count,
+                    (select count(*) from likes l where l.post_id = p.post_id) as post_likes_count,
+                    (select count(*) from comments c where c.post_id = p.post_id) as post_comments_count,
                     GROUP_CONCAT( DISTINCT pag.audio_genre) as post_audio_genres,
                     GROUP_CONCAT(DISTINCT pt.tag) as post_tags
                 from posts p
                 left join postfiles pf on p.post_id = pf.post_id
                 left join postaudiogenres pag on pag.post_id = p.post_id
                 left join posttags pt on pt.post_id = p.post_id
+                left join watchtime w on w.post_id = p.post_id
                 where p.post_id = ?
                 GROUP BY p.post_id`,
                 [post_id]
@@ -75,9 +77,11 @@ export class PostService {
     }
 
     static async get_all_comments(post_id: number){
-        const query = await DB.query(`
-            SELECT username, comment, date_time 
-            FROM comments
+         const query = await DB.query(`
+            SELECT u.username, c.comment, c.comment_time 
+            FROM comments c
+            left join users u
+                on c.author_id = u.user_id
             WHERE post_id = ${post_id}
             ORDER BY comment_time DESC`);
 

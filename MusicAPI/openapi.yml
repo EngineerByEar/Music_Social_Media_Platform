@@ -337,6 +337,27 @@ paths:
         "200":
           description: "Followed successfully"
 
+        "400":
+          description: "Already Following"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              examples:
+                AlreadyFollowing:
+                  value:
+                    message: "You are already following this user"
+                    code: "ALREADY_FOLLOWING"
+                CannotFollowSelf:
+                  value:
+                    message: "You cannot follow yourself"
+                    code: "CANNOT_FOLLOW_SELF"
+                MissingFields:
+                  value:
+                    message: "Missing required fields"
+                    code: "MISSING_FIELDS"
+
+
         "401":
           description: "Unauthorized"
           content:
@@ -347,8 +368,17 @@ paths:
                 message: "You need to be logged in in order to follow another user."
                 code: "NOT_LOGGED_IN"
 
-  /users/unfollow/{username}:
-    post:
+        "404":
+          description: "User does not exist"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "The user you are trying to follow does not exist"
+                code: "USER_DOES_NOT_EXIST"
+
+    delete:
       summary: "Triggered when a user wants to unfollow another user"
       tags: [ UserActions ]
       security:
@@ -363,15 +393,27 @@ paths:
         "200":
           description: "Unfollowed successfully"
 
-        "400":
-          description: "Bad Request"
+        400":
+          description: "Already Following"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
-              example:
-                message: "You´re not following this user."
-                code: "NOT_FOLLOWED"
+              examples:
+
+
+                MissingFields:
+                  value:
+                    message: "Missing required fields"
+                    code: "MISSING_FIELDS"
+                NotFollowing:
+                  value:
+                    message: "You´re not following this user."
+                    code: "NOT_FOLLOWED"
+                CannotUnfollowSelf:
+                  value:
+                    message: "You cannot unfollow yourself"
+                    code: "CANNOT_UNFOLLOW_SELF"
 
         "401":
           description: "Unauthorized"
@@ -382,6 +424,16 @@ paths:
               example:
                 message: "You need to be logged in in order to unfollow another user."
                 code: "NOT_LOGGED_IN"
+
+        "404":
+          description: "User does not exits"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "The user you are trying to unfollow does not exist"
+                code: "USER_DOES_NOT_EXIST"
 
 
   /interactions/posts/{post_id}/like:
@@ -401,6 +453,16 @@ paths:
         "200":
           description: "Liked successfully"
 
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You have already liked this post"
+                code: "ALREADY_LIKED"
+
         "401":
           description: "Unauthorized"
           content:
@@ -408,7 +470,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
-                message: "You need to be logged in in order to follow another user."
+                message: "You need to be logged in in order to like a post."
                 code: "NOT_LOGGED_IN"
 
   /interactions/posts/{post_id}/view:
@@ -439,6 +501,16 @@ paths:
       responses:
         "200":
           description: "Watchtime stored successfully"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Missing fields"
+                code: "MISSING_FIELDS"
 
         "401":
           description: "Unauthorized"
@@ -849,6 +921,10 @@ components:
               format: url
               description: "Relative path to the Image file for the post"
               example: "/uploads/post_id/image.jpg"
+            post_views_count:
+              type: integer
+              description: "Number of views on that post"
+              example: "123"
             post_likes_count:
               type: integer
               description: "Number of likes on that post"
@@ -881,6 +957,14 @@ components:
           type: string
           description: "Relative path of the preview image"
           example: "/uploads/post_id/preview.jpg"
+        post_audio_url:
+          type: string
+          description: "Relative path of the posts audio"
+          example: "/uploads/post_id/audio.mp3"
+        post_views_count:
+            type: integer
+            description: "Number of views on that post"
+            example: 123
         post_likes_count:
           type: integer
           description: "Number of likes on that post"

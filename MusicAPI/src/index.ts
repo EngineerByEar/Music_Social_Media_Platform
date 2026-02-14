@@ -13,6 +13,7 @@ import {PostController} from "./controller/PostController.js";
 import {RecommendationController} from "./controller/RecommendationController.js";
 import {UserController} from "./controller/UserController.js";
 import {InteractionController} from "./controller/InteractionController.js";
+import {UserActionController} from "./controller/UserActionController.js";
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
@@ -25,7 +26,7 @@ const swaggerDocument = YAML.parse(file);
 //Setup API Documentation Route
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/uploads", express.static(path.join(process.cwd(),"uploads")));
-
+app.use("/changelog", express.static(path.join(process.cwd(),"changelog.txt")));
 app.use(express.json());
 app.use(cors());
 
@@ -36,6 +37,7 @@ PostController.init(app);
 RecommendationController.init(app);
 UserController.init(app);
 InteractionController.init(app);
+UserActionController.init(app);
 
 
 app.listen(PORT, () => {

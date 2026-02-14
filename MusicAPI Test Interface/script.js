@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const url = "http://localhost:3000"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
-    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODE2NTI5fQ._rGT2AI9BPpdnJJpDwM4Jq2X1Yadzl7AgveFER1azDc"; // z.B. aus localStorage
 // javascript - client: send JSON via POST and handle non-OK responses
 
 btn.addEventListener("click", async function () {
@@ -16,8 +16,8 @@ btn.addEventListener("click", async function () {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        username: "ma",
-        email: "ma@ui.at",
+        username: "mo",
+        email: "mo@ui.at",
         password: "me"
       })
     });
@@ -25,7 +25,7 @@ btn.addEventListener("click", async function () {
     const data = await resp.json();
     output_field.textContent = JSON.stringify(data);
   });
-    */
+   */
   
 
   //LOGIN USER
@@ -126,7 +126,7 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
 
   //Create Comment
   /*
-  const post_id = 3;
+  const post_id = 5;
   const resp = await fetch(`${url}/interactions/posts/${post_id}/comment`, {
     method: "POST",
     headers:
@@ -134,7 +134,7 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
       "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({
-      comment: "Testtesttest"
+      comment: "Blubitest"
     })
   })
 
@@ -142,10 +142,10 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
   output_field.textContent = JSON.stringify(data);
 
 });
-  */
+*/
 
 //Get All Comments for a POST
-
+/*
  const post_id = 3;
   const resp = await fetch(`${url}/post/3/comments`);
 
@@ -154,9 +154,83 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
 
 });
 
-
+*/
   
- token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODAxOTU4fQ.BinhRk1mnSZd_FUOLpQEnZHNdgGjNxO4avFD6ENLYw4"; // z.B. aus localStorage
+
+//Like a Post
+/*
+  const post_id = 5;
+  const resp = await fetch(`${url}/interactions/posts/${post_id}/like`, {
+    method: "POST",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+*/
+
+//View a post
+/*
+const post_id = 5;
+  const resp = await fetch(`${url}/interactions/posts/${post_id}/view`, {
+    method: "POST",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: 
+    JSON.stringify({
+      "watch_time_seconds": 36,
+      "completed": true
+    })
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+*/
+
+//Follow User
+/*
+  const username = "mo";
+  const resp = await fetch(`${url}/users/follow/${username}`, {
+    method: "POST",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+*/
+
+//UNFOLLOW USER
+
+  const username = "mo";
+  const resp = await fetch(`${url}/users/follow/${username}`, {
+    method: "DELETE",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+
+
+
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {
     e.preventDefault();

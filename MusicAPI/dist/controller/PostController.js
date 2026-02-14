@@ -104,7 +104,6 @@ export class PostController {
         res.status(200).json(response);
     }
     static async get_comments(req, res) {
-        console.log("Getting comments...");
         const post_id = Number(req.params.post_id);
         if (isNaN(post_id) || post_id == 0) {
             res.status(400).json({

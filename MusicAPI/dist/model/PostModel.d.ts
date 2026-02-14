@@ -11,6 +11,7 @@ export interface IPostResponse {
     post_id: number;
     post_audio_url: string;
     post_image_url: string;
+    post_views_count: number;
     post_likes_count: number;
     post_comments_count: number;
     post_tags?: string[];
@@ -22,6 +23,7 @@ export interface IPostQuery {
     post_id: number;
     post_audio_url: string;
     post_image_url: string;
+    post_views_count: number;
     post_likes_count: number;
     post_comments_count: number;
     post_tags?: string;

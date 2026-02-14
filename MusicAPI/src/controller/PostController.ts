@@ -52,7 +52,6 @@ export class PostController {
             ...req.body,
             username: req.params._username
         };
-
         if (!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genres || !image || !audio) {
             return res.status(400).json({
                 "message": "Missing required fields",
@@ -135,7 +134,7 @@ export class PostController {
     }
 
     static async get_comments(req: Request, res: Response) {
-        console.log("Getting comments...");
+
         const post_id = Number(req.params.post_id);
         if (isNaN(post_id) || post_id == 0) {
             res.status(400).json({

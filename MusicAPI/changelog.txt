@@ -3,7 +3,7 @@ This is a Textfile where i document recent changes to the API in case anything g
 
 
 14.02. - 09:00: DELETE /users/follow/{username} works now. Documentation also updated.
-
+                DELETE /interactions/posts/{post_id}/like works now. Documentation also updated.
 
 13.02. - 09:00 /post/{post_id} now additionally returns post_views_count. Also updated documentation.
                /post/{post_id} response variable names adapted to fit documentation

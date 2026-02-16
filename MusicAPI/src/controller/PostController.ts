@@ -1,7 +1,7 @@
 import {Express, Request, Response} from "express";
 import {validateAuth} from "../auth.js";
 import {PostService} from "../service/PostService.js";
-import {ICreatePostRequest} from "../model/PostModel.js";
+import {ICreatePostRequest, IPostPatchRequest} from "../model/PostModel.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
@@ -17,6 +17,10 @@ export class PostController {
             {name: "post_image", maxCount: 1},
             {name: "post_audio", maxCount: 1},
         ]), PostController.upload_post);
+        app.patch("/post", validateAuth, upload.fields([
+            {name: "post_image", maxCount: 1}
+        ]), PostController.update_post)
+
         app.get("/post/:post_id", PostController.get_post);
         app.get("/post/:post_id/comments", PostController.get_comments);
     }
@@ -73,10 +77,11 @@ export class PostController {
         fs.writeFileSync(audio_path, audio.buffer);
         const audio_public_url = path.posix.join(relative_public_url, 'audio' + audio_ext);
 
-        const image_ext = path.extname(image.originalname);
-        const image_path = path.join(post_dir, "image" + image_ext);
-        fs.writeFileSync(image_path, image.buffer);
-        const image_public_url = path.posix.join(relative_public_url, 'image' + image_ext);
+        const image_path = path.join(post_dir, "image.jpg");
+        await sharp(image.buffer)
+            .jpeg()
+            .toFile(image_path);
+        const image_public_url = path.posix.join(relative_public_url, 'image.jpg');
 
 
         const prev_path = path.join(post_dir, "preview.jpg");
@@ -110,6 +115,63 @@ export class PostController {
         //Send Response
         res.status(200).json(response);
 
+    }
+
+    static async update_post(req: Request, res: Response) {
+
+        //Input Handling
+        const files = req.files as {
+            post_image: Express.Multer.File[];
+        }
+        const image = files.post_image[0];
+
+        if (image && image.size > 5000000) {
+            res.status(400).json({
+                "message": "The image size exceeds the maximum file size of 5MB",
+                "code": "IMAGE_TOO_LARGE"
+            })
+            return;
+        }
+
+
+        if(image){
+            //Create URLs to save post
+            const relative_public_url = path.posix.join('/uploads', 'posts', String(req.params.post_id));
+            const post_dir = path.join(process.cwd(), relative_public_url);
+            fs.mkdirSync(post_dir, {recursive: true});
+
+            const image_path = path.join(post_dir, "image.jpg");
+            await sharp(image.buffer)
+                .jpeg()
+                .toFile(image_path);
+
+            const prev_path = path.join(post_dir, "preview.jpg");
+            await sharp(image.buffer)
+                .resize(300, 300, {fit: "inside"})
+                .jpeg({quality: 70})
+                .toFile(prev_path)
+        }
+
+        const data = {
+            ...req.body,
+            username: req.params._username,
+            post_id: req.params.post_id,
+        } as IPostPatchRequest
+
+        if(!await PostService.validate_author(data.post_id, data.username)){
+            res.status(403).json({
+                "message": "You are not the author of this post",
+                "code": "NOT_POST_AUTHOR"
+            })
+            return;
+        }
+        await PostService.update_post(data);
+        if(data.post_audio_genres){
+            await PostService.update_post_genres(data.post_id, data.post_audio_genres);
+        }
+        if(data.post_tags){
+            await PostService.update_post_tags(data.post_id, data.post_tags);
+        }
     }
 
     static async get_post(req: Request, res: Response) {

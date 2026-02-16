@@ -32,8 +32,18 @@ export interface IPostQuery{
     post_audio_genres: string;
 }
 
+export interface IPostPatchRequest{
+    post_title?: string;
+    post_description?: string;
+    post_tags?: string[];
+    post_audio_genres?: string[];
+    username: string;
+    post_id: number;
+}
+
 export interface ICommentResponse{
     username: string;
     comment: string;
     comment_time: string;
 }
+

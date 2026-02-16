@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const btn = document.getElementById("btn");
     const output_field = document.getElementById("output_field");
-    const url = "http://localhost:3000"
+    const url = "http://localhost:3000i"
     //https://mt241063-10974.node.ustp.cloud
     //http://localhost:3000
     let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hIiwiaWF0IjoxNzcwODE2NTI5fQ._rGT2AI9BPpdnJJpDwM4Jq2X1Yadzl7AgveFER1azDc"; // z.B. aus localStorage
@@ -174,6 +174,23 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
 });
 */
 
+//UNLIKE A POST
+
+  const post_id = 5;
+  const resp = await fetch(`${url}/interactions/posts/${post_id}/like`, {
+    method: "DELETE",
+    headers:
+    {"Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  })
+
+  const data = await resp.json();
+  output_field.textContent = JSON.stringify(data);
+
+});
+
+
 //View a post
 /*
 const post_id = 5;
@@ -214,7 +231,7 @@ const post_id = 5;
 */
 
 //UNFOLLOW USER
-
+/*
   const username = "mo";
   const resp = await fetch(`${url}/users/follow/${username}`, {
     method: "DELETE",
@@ -228,8 +245,7 @@ const post_id = 5;
   output_field.textContent = JSON.stringify(data);
 
 });
-
-
+*/
 
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {

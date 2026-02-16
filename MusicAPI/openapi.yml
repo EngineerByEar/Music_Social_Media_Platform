@@ -452,6 +452,13 @@ paths:
       responses:
         "200":
           description: "Liked successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Post liked successfully"
+                code: "POST_LIKED"
 
         "400":
           description: "Bad Request"
@@ -471,6 +478,48 @@ paths:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
                 message: "You need to be logged in in order to like a post."
+                code: "NOT_LOGGED_IN"
+    delete:
+      summary: "Unlike a specific post that was previously likes"
+      tags: [ Interactions ]
+      security:
+        - BearerAuth: [ ]
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        "200":
+          description: "Liked successfully"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Like removed successfully"
+                code: "LIKE_REMOVED"
+
+        "400":
+          description: "Bad Request"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You have not liked this post"
+                code: "NOT_LIKED"
+
+        "401":
+          description: "Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You need to be logged in in order to unlike a post."
                 code: "NOT_LOGGED_IN"
 
   /interactions/posts/{post_id}/view:
@@ -713,6 +762,15 @@ paths:
               example:
                 message: "Session expired please log in"
                 code: "TOKEN_EXPIRED"
+        "403":
+          description: "Forbidden"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "You are not the author of this post"
+                code: "NOT_POST_AUTHOR"
 
   
   /post/{post_id}/comments:

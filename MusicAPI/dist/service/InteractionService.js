@@ -33,6 +33,12 @@ export class InteractionService {
             INSERT INTO likes (post_id, user_id, like_time)
             VALUES(?, ?, current_time())`, [data.post_id, user_id]);
     }
+    static async delete_like(data) {
+        const user_id = await UserService.getUserId(data.username);
+        await DB.execute(`
+            DELETE FROM likes
+            WHERE post_id = ? AND user_id = ?`, [data.post_id, user_id]);
+    }
     static async add_view(data) {
         const user_id = await UserService.getUserId(data.username);
         await DB.execute(`

@@ -1,12 +1,13 @@
 import {Express, Request, Response} from 'express';
 import {InteractionService} from "../service/InteractionService.js";
 import {validateAuth} from "../auth.js";
-import {IViewRequest} from "../model/InteractionModel";
+import {ILikeRequest, IViewRequest} from "../model/InteractionModel";
 
 export class InteractionController {
     static async init(app: Express){
         app.post('/interactions/posts/:post_id/comment', validateAuth, InteractionController.add_comment);
         app.post('/interactions/posts/:post_id/like', validateAuth, InteractionController.add_like);
+        app.delete('/interactions/posts/:post_id/like', validateAuth, InteractionController.delete_like);
         app.post('/interactions/posts/:post_id/view', validateAuth, InteractionController.add_view);
     }
 
@@ -51,7 +52,7 @@ export class InteractionController {
         const data = {
             username: req.params._username as string,
             post_id: Number(req.params.post_id)
-        }
+        } as ILikeRequest
 
         //Handling missing Input Data
         if(!data.username){
@@ -68,9 +69,43 @@ export class InteractionController {
             return
         }
         await InteractionService.add_like(data);
-        res.status(200).send();
+        res.status(200).json({
+            "message": "Post liked successfully",
+            "code": "POST_LIKED"
+        });
 
 
+
+    }
+
+    static async delete_like(req: Request, res: Response){
+        const data = {
+            username: req.params._username as string,
+            post_id: Number(req.params.post_id)
+        } as ILikeRequest
+
+        //Handling missing Input Data
+        if(!data.username){
+            res.status(401).json({
+                "message": "You need to be logged in in order to unlike a post",
+                "code": "NOT_LOGGED_IN"
+            })
+        }
+
+        if(!await InteractionService.check_if_liked(data.username, data.post_id)){
+            res.status(400).json({
+                "message": "You have not liked this post",
+                "code": "NOT_LIKED"
+            })
+            return
+        }
+
+        await InteractionService.delete_like(data);
+
+        res.status(200).json({
+            "message": "Like removed successfully",
+            "code": "LIKE_REMOVED"
+        })
 
     }
 

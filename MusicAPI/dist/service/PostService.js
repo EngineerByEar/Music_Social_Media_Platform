@@ -24,6 +24,32 @@ export class PostService {
             VALUES(?, ?)`, [post_id, tag]);
         }
     }
+    static async validate_author(post_id, username) {
+        const user_id = await UserService.getUserId(username);
+        const query = await DB.execute(`
+            SELECT author_id
+            FROM posts
+            WHERE post_id = ?`, [post_id]);
+        const rows = query[0];
+        const row = rows[0];
+        return row.author_id === user_id;
+    }
+    static async update_post(data) {
+        await DB.execute(`
+            UPDATE posts
+            SET post_title = COALESCE(?, post_title),
+                post_description = COALESCE(?, post_description)
+            WHERE post_id = ?`, [data.post_title ?? null, data.post_description ?? null, data.post_id]);
+    }
+    ;
+    static async update_post_genres(post_id, audio_genres) {
+        await DB.execute(`DELETE FROM postaudiogenres WHERE post_id = ?`, [post_id]);
+        await PostService.add_post_genres(post_id, audio_genres);
+    }
+    static async update_post_tags(post_id, post_tags) {
+        await DB.execute(`DELETE FROM posttags WHERE post_id = ?`, [post_id]);
+        await PostService.add_post_tags(post_id, post_tags);
+    }
     static async get_post(post_id) {
         const query = await DB.execute(`Select
                     p.post_title,

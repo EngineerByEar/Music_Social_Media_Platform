@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/changelog.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/UserActionController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/UserActionModel.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/UserActionService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/AuthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/AuthController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/HealthController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/HealthController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.js" afterDir="false" />
@@ -25,26 +16,8 @@
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserController.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/UserController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/UserController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/AuthModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/AuthModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/AuthModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/AuthModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/InteractionModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/InteractionModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/InteractionModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/InteractionModel.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/InteractionModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/InteractionModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/PostModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/RecommendationModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/RecommendationModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/model/UserModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/UserModel.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js" afterDir="false" />
@@ -53,31 +26,16 @@
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/InteractionController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InteractionController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/InteractionModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/InteractionModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PostModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/RecommendationModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RecommendationModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InteractionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InteractionService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PostService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/RecommendationService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RecommendationService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/1/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/audio.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/2/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/audio.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/3/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/3/audio.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/3/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/3/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +156,7 @@
       <workItem from="1770829336280" duration="3489000" />
       <workItem from="1770879372236" duration="4651000" />
       <workItem from="1770962629558" duration="5061000" />
-      <workItem from="1771055279327" duration="466000" />
+      <workItem from="1771055279327" duration="5101000" />
     </task>
     <servers />
   </component>

@@ -4,6 +4,7 @@ export declare class InteractionService {
     static get_comment(comment_id: number): Promise<ICommentQuery>;
     static check_if_liked(username: string, post_id: number): Promise<boolean>;
     static add_like(data: ILikeRequest): Promise<void>;
+    static delete_like(data: ILikeRequest): Promise<void>;
     static add_view(data: IViewRequest): Promise<void>;
 }
 //# sourceMappingURL=InteractionService.d.ts.map

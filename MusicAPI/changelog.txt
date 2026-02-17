@@ -1,6 +1,12 @@
 This is a Textfile where i document recent changes to the API in case anything goes wrong :)
 
 
+17.02 - 09:00 add post_author_username to /guest/recommendations response
+              add post_author_username to /post/{post_id} response
+        10:10 PATCH /post/{post_id} works now
+        10:30 /post && PATCH /post/{post_id} Status 400 when more than 3 genres or tags are submitted.
+        11:10 /genres in Dokumentation definiert
+
 
 14.02. - 09:00: DELETE /users/follow/{username} works now. Documentation also updated.
                 DELETE /interactions/posts/{post_id}/like works now. Documentation also updated.

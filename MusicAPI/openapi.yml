@@ -118,7 +118,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                INVALID_CREDEMTIALS:
+                INVALID_CREDENTIALS:
                   value:
                     message: "Missing or Expired Token"
                     code: "INVALID_CREDENTIALS"
@@ -167,7 +167,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                INVALID_CREDEMTIALS:
+                INVALID_CREDENTIALS:
                   value:
                     message: "Missing or Expired Token"
                     code: "INVALID_CREDENTIALS"
@@ -393,7 +393,7 @@ paths:
         "200":
           description: "Unfollowed successfully"
 
-        400":
+        "400":
           description: "Already Following"
           content:
             application/json:
@@ -636,6 +636,13 @@ paths:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/PostUpload"
+            encoding:
+              post_tags:
+                style: form
+                explode: true
+              post_audio_genres:
+                style: form
+                explode: true
       responses:
         "200":
           description: "Post uploaded successfully"
@@ -665,6 +672,11 @@ paths:
                   value:
                     message: "Missing required fields: post_title, post_audio"
                     code: "MISSING_FIELDS"
+                TooManyTagsOrGenres:
+                  summary: More than 3 Tags or Genres
+                  value:
+                    message: "More than 3 post_tags or post_audio_genres"
+                    code: "TOO_MANY_TAGS_OR_GENRES"
         "401":
           description: "Unauthorized"
           content:
@@ -729,6 +741,13 @@ paths:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/PostUpdate"
+            encoding:
+              post_tags:
+                style: form
+                explode: true
+              post_audio_genres:
+                style: form
+                explode: true
       responses:
         "200":
           description: "Post updated successfully"
@@ -753,6 +772,11 @@ paths:
                   value:
                     message: "This is not a valid input."
                     code: "INVALID_INPUT"
+                TooManyTagsOrGenres:
+                  summary: More than 3 Tags or Genres
+                  value:
+                    message: "More than 3 post_tags or post_audio_genres"
+                    code: "TOO_MANY_TAGS_OR_GENRES"
         "401":
           description: "Unauthorized"
           content:
@@ -803,6 +827,22 @@ paths:
                   value:
                     message: "Input is not a number or 0"
                     code: "INVALID_INPUT"
+
+  /genres:
+    get:
+      summary: "Loads a list of all possible genres"
+      tags: [ Information ]
+      responses:
+        "200":
+          description: "Successfull request"
+          content:
+            application/json:
+              schema:
+                type: array
+                example: ["Reggae", "Jazz", "Hip-Hop", ...]
+
+
+
 
 components:
   schemas:
@@ -969,6 +1009,10 @@ components:
               type: integer
               description: "ID of a specific post"
               example: 276
+            post_author_username:
+              type: string
+              description: "Username of the Author"
+              example: "Mike37-10"
             post_audio_url:
               type: string
               format: url
@@ -1011,6 +1055,10 @@ components:
           type: string
           description: "Title of the Post"
           example: "Greatest Post Ever!"
+        post_author_username:
+          type: string
+          description: "Username of the Author"
+          example: "Mike37-10"
         post_preview_image_url:
           type: string
           description: "Relative path of the preview image"

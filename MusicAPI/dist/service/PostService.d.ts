@@ -10,5 +10,8 @@ export declare class PostService {
     static update_post_tags(post_id: number, post_tags: string[]): Promise<void>;
     static get_post(post_id: number): Promise<IPostResponse | "post_not_found">;
     static get_all_comments(post_id: number): Promise<ICommentResponse[]>;
+    static extract_pcm(audio_path: string): Promise<Buffer>;
+    static generate_peaks(pcm_buffer: Buffer): number[];
+    static generate_waveform(audio_path: string): Promise<void>;
 }
 //# sourceMappingURL=PostService.d.ts.map

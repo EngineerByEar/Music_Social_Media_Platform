@@ -8,34 +8,46 @@
       <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/child_process.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/child_process.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/crypto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/crypto.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/http.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/http.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/https.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/https.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/net.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/net.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/perf_hooks.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/perf_hooks.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/process.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/process.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/sqlite.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/sqlite.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/test.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/test.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/util.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/util.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/v8.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/v8.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/vm.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/vm.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/web-globals/fetch.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/web-globals/fetch.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InteractionController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InteractionController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PostModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InteractionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InteractionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/RecommendationModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RecommendationModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PostService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/RecommendationService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RecommendationService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/2/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/8/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/8/audio.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +106,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3.Semester\\WF\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -111,7 +123,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.242" />
       </set>
     </attachedChunks>
   </component>
@@ -157,6 +169,8 @@
       <workItem from="1770879372236" duration="4651000" />
       <workItem from="1770962629558" duration="5061000" />
       <workItem from="1771055279327" duration="5101000" />
+      <workItem from="1771258503885" duration="4433000" />
+      <workItem from="1771315068506" duration="12335000" />
     </task>
     <servers />
   </component>

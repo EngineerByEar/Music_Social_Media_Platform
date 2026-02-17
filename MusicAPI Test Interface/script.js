@@ -175,7 +175,7 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
 */
 
 //UNLIKE A POST
-
+/*
   const post_id = 5;
   const resp = await fetch(`${url}/interactions/posts/${post_id}/like`, {
     method: "DELETE",
@@ -189,7 +189,7 @@ const resp = await fetch(`${url}/users/self/content_preferences`, {
   output_field.textContent = JSON.stringify(data);
 
 });
-
+*/
 
 //View a post
 /*
@@ -231,7 +231,7 @@ const post_id = 5;
 */
 
 //UNFOLLOW USER
-/*
+
   const username = "mo";
   const resp = await fetch(`${url}/users/follow/${username}`, {
     method: "DELETE",
@@ -245,7 +245,8 @@ const post_id = 5;
   output_field.textContent = JSON.stringify(data);
 
 });
-*/
+
+
 
 
 document.getElementById("postForm").addEventListener("submit", async (e) => {

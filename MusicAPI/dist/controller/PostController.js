@@ -12,7 +12,7 @@ export class PostController {
             { name: "post_image", maxCount: 1 },
             { name: "post_audio", maxCount: 1 },
         ]), PostController.upload_post);
-        app.patch("/post", validateAuth, upload.fields([
+        app.patch("/post/:post_id", validateAuth, upload.fields([
             { name: "post_image", maxCount: 1 }
         ]), PostController.update_post);
         app.get("/post/:post_id", PostController.get_post);
@@ -47,6 +47,12 @@ export class PostController {
                 "code": "MISSING_FIELDS"
             });
         }
+        if (data.post_tags && data.post_tags?.length > 3 || data.post_audio_genres.length > 3) {
+            return res.status(400).json({
+                "message": "More than 3 post_tags or post_audio_genres",
+                "code": "TOO_MANY_TAGS_OR_GENRES"
+            });
+        }
         //Create Post
         const post_id = await PostService.createPost(data);
         //Create URLs to save post
@@ -57,17 +63,17 @@ export class PostController {
         const audio_path = path.join(post_dir, "audio" + audio_ext);
         fs.writeFileSync(audio_path, audio.buffer);
         const audio_public_url = path.posix.join(relative_public_url, 'audio' + audio_ext);
-        const image_path = path.join(post_dir, "image.jpg");
+        const image_path = path.join(post_dir, "image.jpeg");
         await sharp(image.buffer)
             .jpeg()
             .toFile(image_path);
-        const image_public_url = path.posix.join(relative_public_url, 'image.jpg');
-        const prev_path = path.join(post_dir, "preview.jpg");
+        const image_public_url = path.posix.join(relative_public_url, 'image.jpeg');
+        const prev_path = path.join(post_dir, "preview.jpeg");
         await sharp(image.buffer)
             .resize(300, 300, { fit: "inside" })
             .jpeg({ quality: 70 })
             .toFile(prev_path);
-        const prev_public_url = path.posix.join(relative_public_url, 'preview.jpg');
+        const prev_public_url = path.posix.join(relative_public_url, 'preview.jpeg');
         //Add File URLs to Database
         await PostService.add_post_files(post_id, audio_public_url, image_public_url, prev_public_url);
         //Add Audio Genres to Database
@@ -91,28 +97,13 @@ export class PostController {
     static async update_post(req, res) {
         //Input Handling
         const files = req.files;
-        const image = files.post_image[0];
+        const image = files.post_image?.[0];
         if (image && image.size > 5000000) {
             res.status(400).json({
                 "message": "The image size exceeds the maximum file size of 5MB",
                 "code": "IMAGE_TOO_LARGE"
             });
             return;
-        }
-        if (image) {
-            //Create URLs to save post
-            const relative_public_url = path.posix.join('/uploads', 'posts', String(req.params.post_id));
-            const post_dir = path.join(process.cwd(), relative_public_url);
-            fs.mkdirSync(post_dir, { recursive: true });
-            const image_path = path.join(post_dir, "image.jpg");
-            await sharp(image.buffer)
-                .jpeg()
-                .toFile(image_path);
-            const prev_path = path.join(post_dir, "preview.jpg");
-            await sharp(image.buffer)
-                .resize(300, 300, { fit: "inside" })
-                .jpeg({ quality: 70 })
-                .toFile(prev_path);
         }
         const data = {
             ...req.body,
@@ -126,6 +117,27 @@ export class PostController {
             });
             return;
         }
+        if (data.post_tags && data.post_tags?.length > 3 || data.post_audio_genres && data.post_audio_genres.length > 3) {
+            return res.status(400).json({
+                "message": "More than 3 post_tags or post_audio_genres",
+                "code": "TOO_MANY_TAGS_OR_GENRES"
+            });
+        }
+        if (image) {
+            //Create URLs to save post
+            const relative_public_url = path.posix.join('/uploads', 'posts', String(req.params.post_id));
+            const post_dir = path.join(process.cwd(), relative_public_url);
+            fs.mkdirSync(post_dir, { recursive: true });
+            const image_path = path.join(post_dir, "image.jpeg");
+            await sharp(image.buffer)
+                .jpeg()
+                .toFile(image_path);
+            const prev_path = path.join(post_dir, "preview.jpg");
+            await sharp(image.buffer)
+                .resize(300, 300, { fit: "inside" })
+                .jpeg({ quality: 70 })
+                .toFile(prev_path);
+        }
         await PostService.update_post(data);
         if (data.post_audio_genres) {
             await PostService.update_post_genres(data.post_id, data.post_audio_genres);
@@ -133,6 +145,7 @@ export class PostController {
         if (data.post_tags) {
             await PostService.update_post_tags(data.post_id, data.post_tags);
         }
+        res.status(200).json(await PostService.get_post(data.post_id));
     }
     static async get_post(req, res) {
         const post_id = Number(req.params.post_id);

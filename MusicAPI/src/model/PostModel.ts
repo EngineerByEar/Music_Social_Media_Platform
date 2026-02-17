@@ -10,6 +10,7 @@ export interface IPostResponse{
     post_title: string;
     post_description: string;
     post_id: number;
+    post_author_username: string;
     post_audio_url: string;
     post_image_url: string;
     post_views_count: number;
@@ -23,6 +24,7 @@ export interface IPostQuery{
     post_title: string;
     post_description: string;
     post_id: number;
+    post_author_username: string;
     post_audio_url: string;
     post_image_url: string;
     post_views_count: number;

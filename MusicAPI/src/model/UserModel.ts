@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export interface IContentPreferences{
     content_language: string;
     recommendation_algorithm: string;
@@ -5,6 +7,17 @@ export interface IContentPreferences{
     autoplay: boolean;
     username: string
 }
+/*
+export const ContentPreferencesSchema = z.object({
+    content_language: z.string(),
+    recommendation_algorithm: z.string(),
+    preferred_genres: z.array(z.string()),
+    autoplay: z.boolean(),
+    username: z.string(),
+});
+
+export type IContentPreferences = z.infer<typeof ContentPreferencesSchema>;
+*/
 
 export interface IContentQuery{
     content_language: string;

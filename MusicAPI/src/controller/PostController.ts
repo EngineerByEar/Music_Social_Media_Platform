@@ -6,6 +6,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import sharp from "sharp";
+import {AuthService} from "../service/AuthService.js";
 
 const storage = multer.memoryStorage();
 export const upload = multer({ storage });
@@ -21,8 +22,15 @@ export class PostController {
             {name: "post_image", maxCount: 1}
         ]), PostController.update_post)
 
-        app.get("/post/:post_id", PostController.get_post);
+        app.get("/post/:post_id", AuthService.username_from_token, PostController.get_post);
         app.get("/post/:post_id/comments", PostController.get_comments);
+        app.get("/genres", PostController.get_genres);
+    }
+
+    static get_genres(req: Request, res: Response){
+        res.status(200).send(
+            ["Rock", "Reggae", "HipHop", "Metal"]
+        )
     }
 
     static async upload_post(req: Request, res: Response) {
@@ -108,8 +116,11 @@ export class PostController {
             await PostService.add_post_tags(post_id, data.post_tags);
         }
 
+        await PostService.generate_waveform(post_id, audio_path);
+
+
         //Get Post Information for Response
-        const response = await PostService.get_post(post_id);
+        const response = await PostService.get_post(data.username, post_id);
 
         if (response == "post_not_found") {
             res.status(404).json({
@@ -118,6 +129,7 @@ export class PostController {
             })
             return;
         }
+
         //Send Response
         res.status(200).json(response);
 
@@ -187,7 +199,7 @@ export class PostController {
             await PostService.update_post_tags(data.post_id, data.post_tags);
         }
 
-        res.status(200).json(await PostService.get_post(data.post_id));
+        res.status(200).json(await PostService.get_post(data.username, data.post_id));
     }
 
     static async get_post(req: Request, res: Response) {
@@ -199,8 +211,10 @@ export class PostController {
             })
             return;
         }
+        const username = req.params._username as string| undefined;
+        console.log(username)
 
-        const response = await PostService.get_post(post_id);
+        const response = await PostService.get_post(username, post_id);
         if (response == "post_not_found") {
             res.status(404).json({
                 "message": "Post not found. Check Post ID",

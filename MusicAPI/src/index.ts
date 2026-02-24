@@ -14,6 +14,7 @@ import {RecommendationController} from "./controller/RecommendationController.js
 import {UserController} from "./controller/UserController.js";
 import {InteractionController} from "./controller/InteractionController.js";
 import {UserActionController} from "./controller/UserActionController.js";
+import {PageController} from "./controller/PageController.js";
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
@@ -38,6 +39,7 @@ RecommendationController.init(app);
 UserController.init(app);
 InteractionController.init(app);
 UserActionController.init(app);
+PageController.init(app);
 
 
 app.listen(PORT, () => {

@@ -2,18 +2,19 @@ import { UserService } from "./UserService.js";
 import { DB } from "../db.js";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpeg_static from "ffmpeg-static";
+import { InteractionService } from "./InteractionService.js";
 ffmpeg.setFfmpegPath(ffmpeg_static);
 export class PostService {
     static async createPost(data) {
         const user_id = await UserService.getUserId(data.username);
-        const [inserted] = await DB.execute('Insert into `posts` (`author_id`, `post_title`, `post_description`, `post_upload_time`) values (?, ?, ?, current_time())', [user_id, data.post_title, data.post_description]);
+        const [inserted] = await DB.execute('Insert into `posts` (`author_id`, `post_title`, `post_description`, `post_upload_time`) values (?, ?, ?, current_timestamp())', [user_id, data.post_title, data.post_description]);
         return inserted.insertId;
     }
     static async add_post_files(post_id, audio_path, image_path, prev_path) {
         await DB.execute('Insert into `postfiles` (`post_id`, `post_image_url`, `post_preview_image_url`, `post_audio_url`) values (?, ?, ?, ?)', [post_id, image_path, prev_path, audio_path]);
     }
     static async add_post_genres(post_id, audio_genres) {
-        for (var genre of audio_genres) {
+        for (let genre of audio_genres) {
             await DB.execute(`
                 INSERT INTO postaudiogenres
                 (post_id, audio_genre)
@@ -53,7 +54,7 @@ export class PostService {
         await DB.execute(`DELETE FROM posttags WHERE post_id = ?`, [post_id]);
         await PostService.add_post_tags(post_id, post_tags);
     }
-    static async get_post(post_id) {
+    static async get_post(username, post_id) {
         const query = await DB.execute(`Select
                     p.post_title,
                     p.post_description,
@@ -65,13 +66,15 @@ export class PostService {
                     (select count(*) from likes l where l.post_id = p.post_id) as post_likes_count,
                     (select count(*) from comments c where c.post_id = p.post_id) as post_comments_count,
                     GROUP_CONCAT( DISTINCT pag.audio_genre) as post_audio_genres,
-                    GROUP_CONCAT(DISTINCT pt.tag) as post_tags
+                    GROUP_CONCAT(DISTINCT pt.tag) as post_tags,
+                    wf.waveform as post_waveform
                 from posts p
                 left join users u on p.author_id = u.user_id
                 left join postfiles pf on p.post_id = pf.post_id
                 left join postaudiogenres pag on pag.post_id = p.post_id
                 left join posttags pt on pt.post_id = p.post_id
                 left join watchtime w on w.post_id = p.post_id
+                left join waveforms wf on wf.post_id = p.post_id
                 where p.post_id = ?
                 GROUP BY p.post_id`, [post_id]);
         if (query.length < 1) {
@@ -79,7 +82,11 @@ export class PostService {
         }
         const rows = query[0];
         const row = rows[0];
-        //Converting Group_Concat to array
+        //Converting Group_Concat to array and Waveform to base64 string
+        let user_has_liked = false;
+        if (username) {
+            user_has_liked = await InteractionService.check_if_liked(username, post_id);
+        }
         return {
             ...row,
             post_audio_genres: row.post_audio_genres
@@ -87,7 +94,9 @@ export class PostService {
                 : [],
             post_tags: row.post_tags
                 ? row.post_tags.split(",")
-                : []
+                : [],
+            post_waveform: row.post_waveform.toString("base64"),
+            user_has_liked: user_has_liked
         };
     }
     static async get_all_comments(post_id) {
@@ -130,11 +139,19 @@ export class PostService {
                     max = samples[j];
                 }
             }
+            //Normalize to (-1)-1 values
             peaks.push(max / 32768);
         }
-        return peaks;
+        return Uint8Array.from(peaks.map((p) => {
+            return Math.floor(p * 255);
+        }));
     }
-    static async generate_waveform(audio_path) {
+    static async generate_waveform(post_id, audio_path) {
+        const buffer = await PostService.extract_pcm(audio_path);
+        const wave_form_data = PostService.generate_peaks(buffer);
+        await DB.execute(`
+            INSERT INTO waveforms(post_id, waveform)
+            VALUES(?, ?)`, [post_id, wave_form_data]);
     }
 }
 //# sourceMappingURL=PostService.js.map

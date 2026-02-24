@@ -1,5 +1,6 @@
 import { DB } from "../db.js";
 import { compare, hash } from "bcrypt";
+import jwt from "jsonwebtoken";
 export class AuthService {
     static async register_user(user) {
         //Checking if username is already taken
@@ -48,6 +49,17 @@ export class AuthService {
                 message: "confirmed"
             };
         }
+    }
+    static async username_from_token(req, res, next) {
+        if (req.headers.authorization) {
+            const header = (req.headers.authorization ?? '').trim();
+            const token = header.substring('Bearer '.length);
+            const decode = jwt.verify(token, process.env.JWT_SECRET);
+            req.params._username = decode.username;
+            next();
+            return;
+        }
+        next();
     }
 }
 //# sourceMappingURL=AuthService.js.map

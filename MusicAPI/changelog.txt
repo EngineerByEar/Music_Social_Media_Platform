@@ -1,5 +1,13 @@
 This is a Textfile where i document recent changes to the API in case anything goes wrong :)
 
+20.02 - 13:30 /genres returns a example response.
+
+19.02 - 12:15 /users/recommendations works now. Updated documentation
+
+18.02 - 12:00 audio waveform works also updated documentation
+      - 13:00 user_has_liked is now returned on GET/PATCH /post/{post_id} and /post. Also updated docs.
+      - 15:00 /users/{username}/loadprofile works now. Documentation updated
+      - 16:00 /users/self/history works now. Documentation updated
 
 17.02 - 09:00 add post_author_username to /guest/recommendations response
               add post_author_username to /post/{post_id} response

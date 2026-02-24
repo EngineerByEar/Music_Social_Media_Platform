@@ -5,49 +5,102 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI Test Interface/script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/PageController.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/PageModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/PageService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../MusicAPI DB_SCHEMA.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/RecommendationController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/RecommendationController.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/RecommendationModel.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/AuthService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/AuthService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/PostService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/RecommendationService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/RecommendationService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserActionService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserActionService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserActionService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserActionService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserActionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserActionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserActionService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserActionService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/UserService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/UserService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/child_process.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/child_process.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/crypto.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/crypto.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/http.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/http.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/https.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/https.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/net.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/net.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/perf_hooks.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/perf_hooks.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/process.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/process.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/sqlite.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/sqlite.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/test.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/test.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/util.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/util.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/v8.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/v8.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/vm.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/vm.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/web-globals/fetch.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/web-globals/fetch.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/balanced-match/.github/FUNDING.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/balanced-match/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/balanced-match/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/balanced-match/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/balanced-match/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/balanced-match/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/balanced-match/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/balanced-match/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/brace-expansion/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/brace-expansion/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/brace-expansion/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/brace-expansion/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/brace-expansion/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/brace-expansion/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/brace-expansion/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/README.markdown" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/example/map.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/concat-map/test/map.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/minimatch/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/minimatch/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/minimatch/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/minimatch/minimatch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/minimatch/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/minimatch/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/match.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/lib/monitor/match.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/nodemon/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/nodemon/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/RecommendationController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/RecommendationController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/PostModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/RecommendationModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/RecommendationModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/UserModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/UserModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/AuthService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AuthService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InteractionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InteractionService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/PostService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/RecommendationService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/RecommendationService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UserActionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserActionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/1/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/1/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/1/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/10/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/10/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/11/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/11/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/2/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/audio.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uploads/posts/2/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/image.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/2/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/3/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/3/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/3/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/3/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/6/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/6/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/7/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/7/image.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uploads/posts/8/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/8/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/8/image.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/8/image.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/8/preview.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/8/preview.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/9/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/9/audio.mp3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +124,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EngineerByEar&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EngineerByEar/Music_Social_Media_Platform.git&quot;,
+    &quot;accountId&quot;: &quot;12ce4e8f-2ef6-4e91-bb5c-f0f691a4b7bd&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -105,7 +170,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -171,6 +236,10 @@
       <workItem from="1771055279327" duration="5101000" />
       <workItem from="1771258503885" duration="4433000" />
       <workItem from="1771315068506" duration="12335000" />
+      <workItem from="1771403398729" duration="19175000" />
+      <workItem from="1771494696960" duration="5130000" />
+      <workItem from="1771590563261" duration="964000" />
+      <workItem from="1771931928477" duration="3715000" />
     </task>
     <servers />
   </component>

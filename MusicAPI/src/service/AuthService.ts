@@ -7,6 +7,9 @@ import {
 import {DB} from "../db.js"
 import {compare, hash} from "bcrypt";
 import {ResultSetHeader} from "mysql2";
+import {Request, Response, NextFunction} from "express";
+import jwt from "jsonwebtoken";
+import {ITokenPayload} from "../auth";
 
 
 export class AuthService {
@@ -38,7 +41,6 @@ export class AuthService {
             if(inserted.affectedRows < 1) return "database error";
             return "created";
         }catch(e){
-            console.log(e);
             return "database error";
         }
     }
@@ -65,4 +67,16 @@ export class AuthService {
         }
     }
 
+    static async username_from_token(req:Request, res:Response, next:NextFunction){
+
+        if(req.headers.authorization){
+            const header = (req.headers.authorization ?? '').trim()
+            const token = header.substring('Bearer '.length);
+            const decode = jwt.verify(token, process.env.JWT_SECRET!) as ITokenPayload;
+            req.params._username = decode.username;
+            next()
+            return
+        }
+        next()
+    }
 }

@@ -1,11 +1,14 @@
 import {string} from "yaml/dist/schema/common/string";
 import {bool} from "sharp";
+import {z} from "zod";
 
-export interface ICommentRequest{
-    username: string;
-    comment: string;
-    post_id: number;
-}
+export const CommentRequestSchema = z.object({
+    username: z.string(),
+    comment: z.string(),
+    post_id: z.number(),
+});
+
+export type ICommentRequest = z.infer<typeof CommentRequestSchema>;
 
 export interface ICommentQuery{
     post_id: number;
@@ -16,14 +19,18 @@ export interface ICommentQuery{
     username: string
 }
 
-export interface ILikeRequest{
-    post_id: number;
-    username: string;
-}
+export const LikeRequestSchema = z.object({
+    post_id: z.number(),
+    username: z.string(),
+});
 
-export interface IViewRequest{
-    post_id: number;
-    username: string;
-    completed: boolean;
-    watch_time_seconds: number;
-}
+export type ILikeRequest = z.infer<typeof LikeRequestSchema>;
+
+export const ViewRequestSchema = z.object({
+    post_id: z.number(),
+    username: z.string(),
+    completed: z.boolean(),
+    watch_time_seconds: z.number(),
+});
+
+export type IViewRequest = z.infer<typeof ViewRequestSchema>;

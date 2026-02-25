@@ -6,6 +6,35 @@
   <component name="ChangeListManager">
     <list default="true" id="775e84fe-5cb2-43c4-ac95-e9ecec78ef40" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/changelog.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/InteractionController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/InteractionController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/controller/PostController.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/controller/PostController.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/model/PostModel.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/InteractionService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/InteractionService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/service/PostService.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/service/PostService.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/openapi.yml" beforeDir="false" afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InteractionController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InteractionController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PostController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PostController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/PostModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/PostModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InteractionService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InteractionService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/PostService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/PostService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/4/preview.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/audio.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/uploads/posts/5/preview.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +58,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;EngineerByEar&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/EngineerByEar/Music_Social_Media_Platform.git&quot;,
+    &quot;accountId&quot;: &quot;12ce4e8f-2ef6-4e91-bb5c-f0f691a4b7bd&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -63,8 +104,8 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Mike/Desktop/FH/3. Semester/MusicAPI/src/main.ts&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3.Semester\\WF\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\Mike\\Desktop\\FH\\3. Semester\\Music_Project\\MusicAPI\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -81,7 +122,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.29346.242" />
       </set>
     </attachedChunks>
   </component>
@@ -127,8 +168,6 @@
       <workItem from="1770879372236" duration="4651000" />
       <workItem from="1770962629558" duration="5061000" />
       <workItem from="1771055279327" duration="5101000" />
-      <workItem from="1772023023055" duration="226000" />
-      <workItem from="1772023707197" duration="506000" />
     </task>
     <servers />
   </component>

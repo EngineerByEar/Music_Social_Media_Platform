@@ -8,7 +8,10 @@ export declare class PostService {
     static update_post(data: IPostPatchRequest): Promise<void>;
     static update_post_genres(post_id: number, audio_genres: string[]): Promise<void>;
     static update_post_tags(post_id: number, post_tags: string[]): Promise<void>;
-    static get_post(post_id: number): Promise<IPostResponse | "post_not_found">;
+    static get_post(username: string | undefined, post_id: number): Promise<IPostResponse | "post_not_found">;
     static get_all_comments(post_id: number): Promise<ICommentResponse[]>;
+    static extract_pcm(audio_path: string): Promise<Buffer>;
+    static generate_peaks(pcm_buffer: Buffer): Uint8Array<ArrayBuffer>;
+    static generate_waveform(post_id: number, audio_path: string): Promise<void>;
 }
 //# sourceMappingURL=PostService.d.ts.map

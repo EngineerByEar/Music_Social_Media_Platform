@@ -1,6 +1,12 @@
 import {Express, Request, Response} from "express";
 import {validateAuth} from "../auth.js";
-import {IContentPreferences, IProfile, IUiSettings} from "../model/UserModel.js";
+import {
+    ContentPreferencesSchema,
+    IContentPreferences,
+    IProfile,
+    IUiSettings, ProfileSchema,
+    UiSettingsSchema
+} from "../model/UserModel.js";
 import {UserService} from "../service/UserService.js";
 import multer from "multer";
 import fs from "fs";
@@ -19,10 +25,10 @@ export class UserController {
 
     static async update_content_preferences(req: Request, res: Response){
 
-        const data: IContentPreferences = {
+        const data: IContentPreferences = ContentPreferencesSchema.parse({
           ...req.body,
           username: req.params._username
-      }
+      });
 
       if(!data.username){
           res.status(401).json({
@@ -62,21 +68,21 @@ export class UserController {
 
     static async init_content_preferences(username:string){
 
-        const data: IContentPreferences = {
+        const data: IContentPreferences = ContentPreferencesSchema.parse({
             username: username,
             content_language: "en",
             recommendation_algorithm: "content_based",
             autoplay: true,
             preferred_genres: []
-        }
+        })
         await UserService.init_content_preferences(data);
     }
 
     static async update_ui_settings(req: Request, res: Response){
-        const data: IUiSettings = {
+        const data: IUiSettings = UiSettingsSchema.parse({
             ...req.body,
             username: req.params._username
-        }
+        })
         if(!data.username){
             res.status(401).json({
                 message:"Missing or Expired Token",
@@ -116,11 +122,11 @@ export class UserController {
     }
 
     static async init_ui_settings(username: string){
-        const data: IUiSettings = {
+        const data: IUiSettings = UiSettingsSchema.parse({
             username: username,
             ui_language: "en",
             theme: "dark"
-        };
+        });
         await UserService.init_ui_settings(data);
 
     }
@@ -181,12 +187,12 @@ export class UserController {
                 .toFile(prev_path)
             const prev_public_url = path.posix.join(relative_public_url, 'prev.jpg');
 
-        const data: IProfile = {
+        const data: IProfile = ProfileSchema.parse({
             profile_description: req.body.profile_description,
             profile_image_url: public_profile_image_url,
             profile_image_preview_url: prev_public_url,
             user_id: user_id
-        }
+        });
 
         const result = await UserService.update_profile(data);
         if (result == "updated"){

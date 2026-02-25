@@ -1,0 +1,1 @@
+{"version":3,"file":"PageController.d.ts","sourceRoot":"","sources":["../../src/controller/PageController.ts"],"names":[],"mappings":"AAAA,OAAO,EAAC,OAAO,EAAE,QAAQ,EAAE,OAAO,EAAC,MAAM,SAAS,CAAC;AAMnD,qBAAa,cAAc;WACV,IAAI,CAAC,GAAG,EAAC,OAAO;WAIhB,YAAY,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ;WAkBxC,YAAY,CAAC,GAAG,EAAE,OAAO,EAAE,GAAG,EAAE,QAAQ;CAYxD"}

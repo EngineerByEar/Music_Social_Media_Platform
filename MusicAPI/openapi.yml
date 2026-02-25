@@ -118,7 +118,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                INVALID_CREDEMTIALS:
+                INVALID_CREDENTIALS:
                   value:
                     message: "Missing or Expired Token"
                     code: "INVALID_CREDENTIALS"
@@ -167,7 +167,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               examples:
-                INVALID_CREDEMTIALS:
+                INVALID_CREDENTIALS:
                   value:
                     message: "Missing or Expired Token"
                     code: "INVALID_CREDENTIALS"
@@ -250,8 +250,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
-                message: "The Picture exceeds the maximum file size of 5MB"
-                code: "IMAGE_TOO_LARGE"
+                message: "Invalid username (profile not found)"
+                code: "PROFILE_NOT_FOUND"
 
 
   /users/self/history:
@@ -275,8 +275,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorMessage"
               example:
-                message: "The Picture exceeds the maximum file size of 5MB"
-                code: "IMAGE_TOO_LARGE"
+                message: "Unknown user, history not found"
+                code: "UNKNOWN_USER"
 
         "401":
           description: "Unauthorized"
@@ -297,7 +297,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RecommendationsResponse"
+                $ref: "#/components/schemas/UserRecommendationsResponse"
+
+        "400":
+          description: "Unknown User"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+              example:
+                message: "Unknown user. Please log in again."
+                code: "UNKNOWN_USER"
 
         "401":
           description: "Unauthorized"
@@ -393,7 +403,7 @@ paths:
         "200":
           description: "Unfollowed successfully"
 
-        400":
+        "400":
           description: "Already Following"
           content:
             application/json:
@@ -576,7 +586,7 @@ paths:
       summary: "Comment on a post by logged in user"
       tags: [ Interactions ]
       security:
-        - BearAuth: []
+        - BearerAuth: [ ]
       parameters:
         - name: post_id
           in: path
@@ -636,6 +646,13 @@ paths:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/PostUpload"
+            encoding:
+              post_tags:
+                style: form
+                explode: true
+              post_audio_genres:
+                style: form
+                explode: true
       responses:
         "200":
           description: "Post uploaded successfully"
@@ -665,6 +682,11 @@ paths:
                   value:
                     message: "Missing required fields: post_title, post_audio"
                     code: "MISSING_FIELDS"
+                TooManyTagsOrGenres:
+                  summary: More than 3 Tags or Genres
+                  value:
+                    message: "More than 3 post_tags or post_audio_genres"
+                    code: "TOO_MANY_TAGS_OR_GENRES"
         "401":
           description: "Unauthorized"
           content:
@@ -681,6 +703,9 @@ paths:
     get:
       summary: "Get the Post for the user to view"
       tags: [ Posts ]
+      security:
+        - {}
+        - BearerAuth: [ ]
       parameters:
         - name: post_id
           in: path
@@ -722,13 +747,20 @@ paths:
         - name: post_id
           in: path
           schema:
-            type: string
+            type: number
       requestBody:
         required: true
         content:
           multipart/form-data:
             schema:
               $ref: "#/components/schemas/PostUpdate"
+            encoding:
+              post_tags:
+                style: form
+                explode: true
+              post_audio_genres:
+                style: form
+                explode: true
       responses:
         "200":
           description: "Post updated successfully"
@@ -753,6 +785,11 @@ paths:
                   value:
                     message: "This is not a valid input."
                     code: "INVALID_INPUT"
+                TooManyTagsOrGenres:
+                  summary: More than 3 Tags or Genres
+                  value:
+                    message: "More than 3 post_tags or post_audio_genres"
+                    code: "TOO_MANY_TAGS_OR_GENRES"
         "401":
           description: "Unauthorized"
           content:
@@ -803,6 +840,22 @@ paths:
                   value:
                     message: "Input is not a number or 0"
                     code: "INVALID_INPUT"
+
+  /genres:
+    get:
+      summary: "Loads a list of all possible genres"
+      tags: [ Information ]
+      responses:
+        "200":
+          description: "Successfull request"
+          content:
+            application/json:
+              schema:
+                type: array
+                example: ["Reggae", "Jazz", "Hip-Hop", ...]
+
+
+
 
 components:
   schemas:
@@ -969,6 +1022,10 @@ components:
               type: integer
               description: "ID of a specific post"
               example: 276
+            post_author_username:
+              type: string
+              description: "Username of the Author"
+              example: "Mike37-10"
             post_audio_url:
               type: string
               format: url
@@ -999,7 +1056,15 @@ components:
               type: array
               description: "Tags that are associated when the post was created. May be empty!"
               example: ["Tag", "Tag2"]
-
+            post_waveform:
+              type: string
+              format: base64
+              description: "Base64 String that contains 1000 peaks as the waveform of the audio"
+              example: "Af4B/gEAAAEA/wABAQD+QkdDNBwXEy8tKh8DAgFTOD4/PDw3LScnIx8aFAcxPDQrIxsa+gAGFSsZKzwzKiQLCARB9DEtLigiHlFGKyQeF/zTZVU6Oyc4OjYyKRri+SgrIRkOEREEAgoGCAoMDfv7Dg0NAg0LCgoFAwoLCgcDBAQMAwEB3VZBMVM9PSdAMychAwDoVkM9NTXvIB8fHRgUEgwNGzQi/AH2AAMPDwQFEBgnWjs0LBQEM0bo+SMiIvQ6NCAtH+4Z8w9pPU8/ND06Ni0rJTArKSIcGhwbFRIODQYHCg8ODg4MCwwMDgwICAkKCwoMC/UJBwoLAkYrQTQkHw8wMS4mBQMCNlMzMSAOCgYEAgH+AwIDBGpLPvcmJCMfGBoWHRwXFT4uHh4KAgE9NysfHhkWTU0/JhYdByESIRcJBgUCgJaagVpTX004DBcnJBAPKh8aFhcU3VxsZWFPyzEuICQqLjAuKiYiHRYR5v8ODQ8IEA0LFCArIwslIh4YGBPzDw4DUFZZR0lTVkI8QdsdRUeHZl1SQFZbXVJPQEJCSUVKFzwcZBNDV2dPQc5dWVFaV2YWLkpTYVFKUkVAS0hdWldHUVVYJjA+IitGSIRnTFFJWVZbUlFBQ0NKRUlK10RiTzBeZk1H3FxZUuIXZykwTjpjUUpSRURLSG91d3F9hXhzpIF+bVRna9Q4KIdxbmCBinZslnR2QxsLEiTGJi0ECRs1ODYbRUAnRkhGRRomLEFNWk5MNgob0iszOTPNN8Y9NxoWW0nOS81wbGdVNcziAjcmbYF5b29dU2Ftf21bUC2+UBxdW19hUC1AR0hLRj9FcU9yZGI7PFAyyzA0RYqBZG0+d1hbaoqQhoGMhnxucmdvSSZmPjfiSVaEmZQc9Q09NB3QPiMyMT46LkBIREdCQTs1OT0kJyriRWl0cD5pVzs0Mj9ZPipUNyw2OiMnJUNUXFdMTFJRVVpaSlJYPTI9"
+            user_has_liked:
+              type: boolean
+              description: "Returns a boolean if the user has previously liked the post"
+              example: false
     PostPreview:
       type: object
       properties:
@@ -1011,6 +1076,10 @@ components:
           type: string
           description: "Title of the Post"
           example: "Greatest Post Ever!"
+        post_author_username:
+          type: string
+          description: "Username of the Author"
+          example: "Mike37-10"
         post_preview_image_url:
           type: string
           description: "Relative path of the preview image"
@@ -1027,6 +1096,11 @@ components:
           type: integer
           description: "Number of likes on that post"
           example: 3
+        waveform:
+          type: string
+          format: base64
+          description: "Waveform (1000 peaks with values 0 - 255) encoded as base64 string."
+          example: "Af4B/gEAAAEA/wABAQD+QkdDNBwXEy8tKh8DAgFTOD4/PDw3LScnIx8aFAcxPDQrIxsa+gAGFSsZKzwzKiQLCARB9DEtLigiHlFGKyQeF/zTZVU6Oyc4OjYyKRri+SgrIRkOEREEAgoGCAoMDfv7Dg0NAg0LCgoFAwoLCgcDBAQMAwEB3VZBMVM9PSdAMychAwDoVkM9NTXvIB8fHRgUEgwNGzQi/AH2AAMPDwQFEBgnWjs0LBQEM0bo+SMiIvQ6NCAtH+4Z8w9pPU8/ND06Ni0rJTArKSIcGhwbFRIODQYHCg8ODg4MCwwMDgwICAkKCwoMC/UJBwoLAkYrQTQkHw8wMS4mBQMCNlMzMSAOCgYEAgH+AwIDBGpLPvcmJCMfGBoWHRwXFT4u"
 
 
     ProfileInformation:
@@ -1036,7 +1110,7 @@ components:
           type: string
           description: "Username of a Profile owner"
           example: "Mike"
-        description:
+        profile_description:
           type: string
           description: "Description of a profile"
           example: "Welcome to my profile"
@@ -1054,7 +1128,13 @@ components:
         - $ref: "#/components/schemas/ProfileInformation"
         - type: object
           properties:
-            posts:
+            user_is_following:
+              type: boolean
+              description: "Shows if the user requesting is following the loaded profile"
+              example: false
+        - type: object
+          properties:
+            post_previews:
               type: array
               items: 
                 $ref: "#/components/schemas/PostPreview"
@@ -1093,6 +1173,18 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/PostPreview"
+
+    UserRecommendationsResponse:
+      type: array
+      items:
+        allOf:
+          - $ref: "#/components/schemas/PostPreview"
+          - type: object
+            properties:
+              user_has_liked:
+                description: "Shows if user likes this post"
+                example: false
+
 
     AuthSuccessfulResponse:
       type: object

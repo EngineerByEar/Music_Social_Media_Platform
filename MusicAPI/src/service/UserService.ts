@@ -103,7 +103,6 @@ export class UserService{
             return "Token Invalid";
         }
 
-        console.log(data)
 
         const result = await DB.execute(`
             UPDATE uisettings 
@@ -116,7 +115,6 @@ export class UserService{
         if(resset.affectedRows < 1){
             return "database error | no settings changed"
         }else{
-            console.log("content_preferences updated")
             return "updated"
         }
     }

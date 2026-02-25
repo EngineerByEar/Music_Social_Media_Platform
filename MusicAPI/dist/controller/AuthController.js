@@ -1,4 +1,5 @@
 import { AuthService } from "../service/AuthService.js";
+import { AuthLoginUserSchema, AuthRegistrationSchema, } from "../model/AuthModel.js";
 import { generateToken } from "../auth.js";
 import { UserController } from "./UserController.js";
 import { UserService } from "../service/UserService.js";
@@ -8,7 +9,7 @@ export class AuthController {
         app.post('/auth/login', AuthController.login);
     }
     static async register(req, res) {
-        const user = req.body;
+        const user = AuthRegistrationSchema.parse(req.body);
         if (!user.username || !user.email || !user.password) {
             res.status(400).json({
                 "message": "Missing required field",
@@ -22,7 +23,7 @@ export class AuthController {
             await UserController.init_content_preferences(user.username);
             await UserController.init_ui_settings(user.username);
             await UserController.init_profile(user.username);
-            res.status(201).json({
+            res.status(200).json({
                 "token": generateToken({ username: user.username }),
                 "user": user
             });
@@ -50,7 +51,7 @@ export class AuthController {
         }
     }
     static async login(req, res) {
-        const user = req.body;
+        const user = AuthLoginUserSchema.parse(req.body);
         if (!user.username || !user.password) {
             res.status(400).json({
                 "message": "Missing required field",
@@ -63,7 +64,7 @@ export class AuthController {
         if (result.message == "confirmed") {
             const ui_settings = await UserService.get_ui_settings(result.user_id);
             const content_preferences = await UserService.get_content_preferences(result.user_id);
-            res.status(201).json({
+            res.status(200).json({
                 "token": generateToken({ username: user.username }),
                 "user": {
                     username: result.username,

@@ -6,7 +6,6 @@ export class HealthService{
             await DB.query("select 1");
             return true;
         }catch(e){
-            console.log(e);
             return false;
         }
     }

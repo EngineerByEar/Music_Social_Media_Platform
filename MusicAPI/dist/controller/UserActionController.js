@@ -1,15 +1,16 @@
 import { UserActionService } from "../service/UserActionService.js";
 import { validateAuth } from "../auth.js";
+import { FollowSchema } from "../model/UserActionModel.js";
 export class UserActionController {
     static init(app) {
         app.post("/users/follow/:username", validateAuth, UserActionController.follow_user);
         app.delete("/users/follow/:username", validateAuth, UserActionController.unfollow_user);
     }
     static async follow_user(req, res) {
-        const data = {
+        const data = FollowSchema.parse({
             user_following: req.params._username,
             user_followed: req.params.username
-        };
+        });
         //Handling missing inputs
         if (!data.user_following || !data.user_followed) {
             res.status(400).json({

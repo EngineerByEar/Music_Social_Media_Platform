@@ -1,7 +1,7 @@
 import {Express, Request, Response} from 'express';
 import {UserActionService} from "../service/UserActionService.js";
 import {validateAuth} from "../auth.js";
-import {IFollow} from "../model/UserActionModel.js";
+import {IFollow, FollowSchema} from "../model/UserActionModel.js";
 
 export class UserActionController{
     static init(app: Express){
@@ -10,10 +10,10 @@ export class UserActionController{
     }
 
     static async follow_user(req: Request, res: Response){
-        const data = {
+        const data : IFollow = FollowSchema.parse({
             user_following: req.params._username,
             user_followed: req.params.username
-        } as IFollow;
+        });
         //Handling missing inputs
         if(!data.user_following || !data.user_followed){
             res.status(400).json({

@@ -8,7 +8,7 @@ export class InteractionService {
         const user_id = await UserService.getUserId(data.username);
         const [ inserted ] = await DB.execute<ResultSetHeader>(`
             INSERT INTO comments (post_id, author_id, comment, comment_time)
-            VALUES(?, ?, ?, current_time())`,
+            VALUES(?, ?, ?, current_timestamp())`,
             [data.post_id, user_id, data.comment]);
         return inserted.insertId;
     }
@@ -39,7 +39,7 @@ export class InteractionService {
         const user_id = await UserService.getUserId(data.username);
         await DB.execute<ResultSetHeader>(`
             INSERT INTO likes (post_id, user_id, like_time)
-            VALUES(?, ?, current_time())`, [data.post_id, user_id]);
+            VALUES(?, ?, current_timestamp())`, [data.post_id, user_id]);
     }
 
     static async delete_like(data: ILikeRequest){
@@ -54,12 +54,12 @@ export class InteractionService {
 
             await DB.execute<ResultSetHeader>(`
                 INSERT INTO watchtime (post_id, user_id, total_watch_time_seconds, times_watched, completed, last_viewed_at)
-                VALUES (?, ?, ?, 1, ?, current_time())
+                VALUES (?, ?, ?, 1, ?, current_timestamp())
                 ON DUPLICATE KEY UPDATE
                     total_watch_time_seconds = total_watch_time_seconds + VALUES(total_watch_time_seconds),
                     times_watched = times_watched + 1,
                     completed = completed OR VALUES(completed),
-                    last_viewed_at = current_time()
+                    last_viewed_at = current_timestamp()
                 `, [data.post_id, user_id, data.watch_time_seconds, data.completed]);
     }
 

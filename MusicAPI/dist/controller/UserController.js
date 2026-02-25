@@ -1,4 +1,5 @@
 import { validateAuth } from "../auth.js";
+import { ContentPreferencesSchema, ProfileSchema, UiSettingsSchema } from "../model/UserModel.js";
 import { UserService } from "../service/UserService.js";
 import multer from "multer";
 import fs from "fs";
@@ -13,10 +14,10 @@ export class UserController {
         app.patch("/users/self/profile", validateAuth, upload.single("profile_picture"), UserController.update_profile);
     }
     static async update_content_preferences(req, res) {
-        const data = {
+        const data = ContentPreferencesSchema.parse({
             ...req.body,
             username: req.params._username
-        };
+        });
         if (!data.username) {
             res.status(401).json({
                 message: "Missing or Expired Token",
@@ -52,20 +53,20 @@ export class UserController {
         }
     }
     static async init_content_preferences(username) {
-        const data = {
+        const data = ContentPreferencesSchema.parse({
             username: username,
             content_language: "en",
             recommendation_algorithm: "content_based",
             autoplay: true,
             preferred_genres: []
-        };
+        });
         await UserService.init_content_preferences(data);
     }
     static async update_ui_settings(req, res) {
-        const data = {
+        const data = UiSettingsSchema.parse({
             ...req.body,
             username: req.params._username
-        };
+        });
         if (!data.username) {
             res.status(401).json({
                 message: "Missing or Expired Token",
@@ -101,11 +102,11 @@ export class UserController {
         }
     }
     static async init_ui_settings(username) {
-        const data = {
+        const data = UiSettingsSchema.parse({
             username: username,
             ui_language: "en",
             theme: "dark"
-        };
+        });
         await UserService.init_ui_settings(data);
     }
     static async update_profile(req, res) {
@@ -155,12 +156,12 @@ export class UserController {
             .jpeg({ quality: 70 })
             .toFile(prev_path);
         const prev_public_url = path.posix.join(relative_public_url, 'prev.jpg');
-        const data = {
+        const data = ProfileSchema.parse({
             profile_description: req.body.profile_description,
             profile_image_url: public_profile_image_url,
             profile_image_preview_url: prev_public_url,
             user_id: user_id
-        };
+        });
         const result = await UserService.update_profile(data);
         if (result == "updated") {
             res.status(200).send();

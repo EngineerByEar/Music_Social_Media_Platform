@@ -1,7 +1,15 @@
 import {Express, Request, Response} from 'express';
 import {InteractionService} from "../service/InteractionService.js";
 import {validateAuth} from "../auth.js";
-import {ILikeRequest, IViewRequest} from "../model/InteractionModel";
+import {
+    CommentRequestSchema,
+    ICommentRequest,
+    ILikeRequest,
+    IViewRequest,
+    LikeRequestSchema, ViewRequestSchema
+} from "../model/InteractionModel.js";
+import {PostController} from "./PostController.js";
+import {PostService} from "../service/PostService.js";
 
 export class InteractionController {
     static async init(app: Express){
@@ -12,12 +20,11 @@ export class InteractionController {
     }
 
     static async add_comment(req: Request, res: Response){
-        console.log("Adding comment...");
-        const data = {
+        const data : ICommentRequest = CommentRequestSchema.parse({
             ...req.body,
             post_id: Number(req.params.post_id),
             username: req.params._username
-        }
+        });
 
         //Handling missing Input Data
         if(!data.username){
@@ -49,10 +56,10 @@ export class InteractionController {
     }
 
     static async add_like(req: Request, res: Response){
-        const data = {
+        const data = LikeRequestSchema.parse({
             username: req.params._username as string,
             post_id: Number(req.params.post_id)
-        } as ILikeRequest
+        }) as ILikeRequest;
 
         //Handling missing Input Data
         if(!data.username){
@@ -69,20 +76,27 @@ export class InteractionController {
             return
         }
         await InteractionService.add_like(data);
+
+        const post = await PostService.get_post(undefined, data.post_id);
+        if(post != "post_not_found") {
+            PostController.broadcast({
+                type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
+            });
+        }
+
         res.status(200).json({
             "message": "Post liked successfully",
             "code": "POST_LIKED"
         });
 
 
-
     }
 
     static async delete_like(req: Request, res: Response){
-        const data = {
+        const data = LikeRequestSchema.parse({
             username: req.params._username as string,
             post_id: Number(req.params.post_id)
-        } as ILikeRequest
+        }) as ILikeRequest;
 
         //Handling missing Input Data
         if(!data.username){
@@ -102,6 +116,13 @@ export class InteractionController {
 
         await InteractionService.delete_like(data);
 
+        const post = await PostService.get_post(undefined, data.post_id);
+        if(post != "post_not_found") {
+            PostController.broadcast({
+                type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
+            });
+        }
+
         res.status(200).json({
             "message": "Like removed successfully",
             "code": "LIKE_REMOVED"
@@ -110,11 +131,11 @@ export class InteractionController {
     }
 
     static async add_view(req: Request, res: Response){
-        const data = {
+        const data = ViewRequestSchema.parse({
             ...req.body,
             post_id: Number(req.params.post_id),
             username: req.params._username as string,
-        } as IViewRequest
+        }) as IViewRequest;
 
         if(!data.username){
             res.status(401).json({
@@ -130,6 +151,13 @@ export class InteractionController {
         }
 
         await InteractionService.add_view(data);
+
+        const post = await PostService.get_post(undefined, data.post_id);
+        if(post != "post_not_found") {
+            PostController.broadcast({
+                type: "view_count_updated", post_id: data.post_id, count: post.post_views_count
+            });
+        }
 
         res.status(200).send();
 

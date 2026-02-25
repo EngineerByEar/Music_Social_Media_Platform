@@ -1,8 +1,10 @@
 import {Express, Request, Response} from 'express';
 import {AuthService} from "../service/AuthService.js"
 import {
+    AuthLoginUserSchema,
     IAuthLoginUser,
-    IAuthRegistration
+    IAuthRegistration,
+    AuthRegistrationSchema,
 } from "../model/AuthModel.js";
 import {generateToken} from "../auth.js";
 import {UserController} from "./UserController.js";
@@ -15,7 +17,7 @@ export class AuthController{
     }
 
     static async register(req:Request, res: Response){
-        const user: IAuthRegistration = req.body;
+        const user: IAuthRegistration = AuthRegistrationSchema.parse(req.body);
 
         if(!user.username || !user.email || !user.password){
             res.status(400).json({
@@ -34,7 +36,7 @@ export class AuthController{
                 await UserController.init_profile(user.username);
 
 
-                res.status(201).json({
+                res.status(200).json({
                     "token": generateToken({username: user.username}),
                     "user": user
                 })
@@ -65,7 +67,7 @@ export class AuthController{
     }
 
     static async login(req: Request, res: Response){
-        const user: IAuthLoginUser = req.body;
+        const user: IAuthLoginUser = AuthLoginUserSchema.parse(req.body);
 
         if(!user.username || !user.password){
             res.status(400).json({
@@ -81,7 +83,7 @@ export class AuthController{
             const ui_settings = await UserService.get_ui_settings(result.user_id as number);
             const content_preferences = await UserService.get_content_preferences(result.user_id as number);
 
-            res.status(201).json({
+            res.status(200).json({
                 "token": generateToken({username: user.username}),
                 "user": {
                     username: result.username,

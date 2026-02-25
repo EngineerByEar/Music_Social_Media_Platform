@@ -73,7 +73,6 @@ export class UserService {
         if (!user_id) {
             return "Token Invalid";
         }
-        console.log(data);
         const result = await DB.execute(`
             UPDATE uisettings 
             SET ui_language = ?,
@@ -84,7 +83,6 @@ export class UserService {
             return "database error | no settings changed";
         }
         else {
-            console.log("content_preferences updated");
             return "updated";
         }
     }

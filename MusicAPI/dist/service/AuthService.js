@@ -27,7 +27,6 @@ export class AuthService {
             return "created";
         }
         catch (e) {
-            console.log(e);
             return "database error";
         }
     }

@@ -1,12 +1,23 @@
 import {Express, Request, Response} from "express";
 import {validateAuth} from "../auth.js";
 import {PostService} from "../service/PostService.js";
-import {ICreatePostRequest, IPostPatchRequest} from "../model/PostModel.js";
+import {
+    CreatePostRequestSchema,
+    ICreatePostRequest,
+    IPostPatchRequest,
+    PostPatchRequestSchema
+} from "../model/PostModel.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 import sharp from "sharp";
 import {AuthService} from "../service/AuthService.js";
+import {WebSocket, WebSocketServer} from "ws";
+import { Server as HttpServer } from 'http';
+import {IBroadcastMessage, IWsMessage} from "../model/PageModel";
+
+let wss;
+const subscriptions: Record<string, Set<WebSocket>> = {};
 
 const storage = multer.memoryStorage();
 export const upload = multer({ storage });
@@ -59,11 +70,11 @@ export class PostController {
             return;
         }
 
-        const data: ICreatePostRequest = {
+        const data: ICreatePostRequest = CreatePostRequestSchema.parse({
             ...req.body,
             username: req.params._username
-        };
-        if (!data || !data.username || !data.post_title || !data.post_description || !data.post_audio_genres || !image || !audio) {
+        });
+        if (!image || !audio) {
             return res.status(400).json({
                 "message": "Missing required fields",
                 "code": "MISSING_FIELDS"
@@ -150,11 +161,11 @@ export class PostController {
             })
             return;
         }
-        const data = {
+        const data = PostPatchRequestSchema.parse({
             ...req.body,
             username: req.params._username,
-            post_id: req.params.post_id,
-        } as IPostPatchRequest
+            post_id: Number(req.params.post_id),
+        }) as IPostPatchRequest
 
         if(!await PostService.validate_author(data.post_id, data.username)){
             res.status(403).json({
@@ -212,7 +223,6 @@ export class PostController {
             return;
         }
         const username = req.params._username as string| undefined;
-        console.log(username)
 
         const response = await PostService.get_post(username, post_id);
         if (response == "post_not_found") {
@@ -236,6 +246,38 @@ export class PostController {
         }
         const response = await PostService.get_all_comments(post_id);
         res.status(200).json(response);
+    };
+
+    static initWebSocket(server: HttpServer){
+        wss = new WebSocketServer({server});
+
+        wss.on('connection', (ws: WebSocket) => {
+            ws.on('message', (msg: string) => {
+                let data :IWsMessage = JSON.parse(msg);
+                if(data.type === 'subscribe' && data.post_id) {
+                    if (!subscriptions[data.post_id]) {
+                        subscriptions[data.post_id] = new Set();
+                        subscriptions[data.post_id]!.add(ws);
+                    }
+                }else if (data.type === 'unsubscribe' && data.post_id){
+                        subscriptions[data.post_id]?.delete(ws);
+                    }
+            });
+            ws.on('close', ()=>{
+                Object.values(subscriptions).forEach(set => set.delete(ws));
+            });
+
+        })
+    };
+
+    static broadcast(message: IBroadcastMessage){
+        console.log("Broadcast");
+        const postSubs = subscriptions[message.post_id];
+        if(!postSubs){
+            return;
+        }
+        const msg = JSON.stringify(message);
+        postSubs.forEach(ws => ws.send(msg));
     }
 
 

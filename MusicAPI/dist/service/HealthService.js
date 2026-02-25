@@ -6,7 +6,6 @@ export class HealthService {
             return true;
         }
         catch (e) {
-            console.log(e);
             return false;
         }
     }

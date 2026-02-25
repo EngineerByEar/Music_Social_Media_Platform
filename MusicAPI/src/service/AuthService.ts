@@ -41,7 +41,6 @@ export class AuthService {
             if(inserted.affectedRows < 1) return "database error";
             return "created";
         }catch(e){
-            console.log(e);
             return "database error";
         }
     }

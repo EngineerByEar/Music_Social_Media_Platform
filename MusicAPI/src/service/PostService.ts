@@ -11,6 +11,7 @@ import {DB} from "../db.js";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpeg_static from "ffmpeg-static";
 import {InteractionService} from "./InteractionService.js";
+import {WebSocket} from "ws";
 
 ffmpeg.setFfmpegPath(ffmpeg_static as string);
 
@@ -209,6 +210,7 @@ export class PostService {
             INSERT INTO waveforms(post_id, waveform)
             VALUES(?, ?)`, [post_id, wave_form_data])
     }
-}
 
+
+}
 

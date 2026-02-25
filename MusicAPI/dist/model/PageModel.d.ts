@@ -24,4 +24,13 @@ export interface IHistoryQuery extends RowDataPacket {
     post_likes_count: number;
     viewed_at: Date;
 }
+export interface IWsMessage {
+    type: 'subscribe' | 'unsubscribe';
+    post_id: string;
+}
+export interface IBroadcastMessage {
+    type: 'view_count_updated' | 'like_count_updated';
+    post_id: number;
+    count: number;
+}
 //# sourceMappingURL=PageModel.d.ts.map

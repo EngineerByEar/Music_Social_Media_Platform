@@ -1,13 +1,15 @@
 import { RowDataPacket } from "mysql2";
+import {z } from "zod";
 
+export const CreatePostRequestSchema = z.object({
+    post_title: z.string(),
+    post_description: z.string(),
+    post_tags: z.array(z.string()).optional(),
+    post_audio_genres: z.array(z.string()),
+    username: z.string(),
+});
 
-export interface ICreatePostRequest{
-    post_title:string;
-    post_description:string;
-    post_tags?: string[];
-    post_audio_genres: string[];
-    username: string;
-}
+export type ICreatePostRequest = z.infer<typeof CreatePostRequestSchema>;
 
 export interface IPostResponse{
     post_title: string;
@@ -40,14 +42,16 @@ export interface IPostQuery{
     post_waveform: Buffer;
 }
 
-export interface IPostPatchRequest{
-    post_title?: string;
-    post_description?: string;
-    post_tags?: string[];
-    post_audio_genres?: string[];
-    username: string;
-    post_id: number;
-}
+export const PostPatchRequestSchema = z.object({
+    post_title: z.string().optional(),
+    post_description: z.string().optional(),
+    post_tags: z.array(z.string()).optional(),
+    post_audio_genres: z.array(z.string()).optional(),
+    username: z.string(),
+    post_id: z.number(),
+});
+
+export type IPostPatchRequest = z.infer<typeof PostPatchRequestSchema>;
 
 export interface ICommentResponse{
     username: string;

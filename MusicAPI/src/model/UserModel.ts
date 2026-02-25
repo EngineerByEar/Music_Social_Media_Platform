@@ -1,13 +1,5 @@
 import { z } from "zod";
 
-export interface IContentPreferences{
-    content_language: string;
-    recommendation_algorithm: string;
-    preferred_genres: string[];
-    autoplay: boolean;
-    username: string
-}
-/*
 export const ContentPreferencesSchema = z.object({
     content_language: z.string(),
     recommendation_algorithm: z.string(),
@@ -17,40 +9,49 @@ export const ContentPreferencesSchema = z.object({
 });
 
 export type IContentPreferences = z.infer<typeof ContentPreferencesSchema>;
-*/
 
-export interface IContentQuery{
-    content_language: string;
-    recommendation_algorithm: string;
-    autoplay: boolean;
-}
+export const ContentQuerySchema = z.object({
+    content_language: z.string(),
+    recommendation_algorithm: z.string(),
+    autoplay: z.boolean(),
+});
 
-export interface IGenreQuery{
-    preferred_genre: string;
-}
+export type IContentQuery = z.infer<typeof ContentQuerySchema>;
 
-export interface IContentPreferencesResponse{
-    content_language: string;
-    recommendation_algorithm: string;
-    preferred_genres: string[];
-    autoplay: boolean;
-}
+export const GenreQuerySchema = z.object({
+    preferred_genre: z.string(),
+});
+
+export type IGenreQuery = z.infer<typeof GenreQuerySchema>;
+
+export const ContentPreferencesResponseSchema = z.object({
+    content_language: z.string(),
+    recommendation_algorithm: z.string(),
+    preferred_genres: z.array(z.string()),
+    autoplay: z.boolean(),
+});
+
+export type IContentPreferencesResponse = z.infer<typeof ContentPreferencesResponseSchema>;
 
 
-export interface IUiSettings{
-    username: string;
-    ui_language: string;
-    theme: string;
-}
+export const UiSettingsSchema = z.object({
+    username: z.string(),
+    ui_language: z.string(),
+    theme: z.string(),
+})
+export type IUiSettings = z.infer<typeof UiSettingsSchema>;
 
-export interface IUiSettingsQuery{
-    ui_language: string;
-    theme: string;
-}
+export const UiSettingsQuerySchema = z.object({
+    ui_language: z.string(),
+    theme: z.string(),
+});
+export type IUiSettingsQuery = z.infer<typeof UiSettingsQuerySchema>;
 
-export interface IProfile{
-    user_id: number;
-    profile_description: string;
-    profile_image_url: string;
-    profile_image_preview_url: string;
-}
+export const ProfileSchema = z.object({
+    user_id: z.number(),
+    profile_description: z.string(),
+    profile_image_url: z.string(),
+    profile_image_preview_url: z.string(),
+});
+
+export type IProfile = z.infer<typeof ProfileSchema>;

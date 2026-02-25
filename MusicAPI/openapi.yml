@@ -586,7 +586,7 @@ paths:
       summary: "Comment on a post by logged in user"
       tags: [ Interactions ]
       security:
-        - BearAuth: []
+        - BearerAuth: [ ]
       parameters:
         - name: post_id
           in: path
@@ -747,7 +747,7 @@ paths:
         - name: post_id
           in: path
           schema:
-            type: string
+            type: number
       requestBody:
         required: true
         content:

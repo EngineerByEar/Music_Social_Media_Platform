@@ -15,6 +15,7 @@ import {UserController} from "./controller/UserController.js";
 import {InteractionController} from "./controller/InteractionController.js";
 import {UserActionController} from "./controller/UserActionController.js";
 import {PageController} from "./controller/PageController.js";
+import * as http from "node:http";
 
 const PORT = process.env.PORT || 3000;
 const app: Express = express();
@@ -42,6 +43,12 @@ UserActionController.init(app);
 PageController.init(app);
 
 
+const server = http.createServer(app);
+PostController.initWebSocket(server);
+
+server.listen(10974, () =>{
+  console.log(`WebSocket server listening on 10974`)
+})
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })

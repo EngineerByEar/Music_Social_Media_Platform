@@ -46,16 +46,18 @@ export class AuthService {
     }
 
     static async login_user(user: IAuthLoginUser) {
-
         const query = await DB.query('Select `username`, `password`, `user_id`, `email` from `users` where `username` = ?', [user.username]);
         const rows = query[0] as IAuthLoginQuery[];
         const user_data = rows[0] as IAuthLoginQuery;
+        if(!user_data){
+            return{
+                message: "wrong_username_or_password"
+            }
+        }
         const is_valid = await compare(user.password, user_data.password);
-
         if(!is_valid) {
             return {
                 message: "wrong_username_or_password"
-
             };
         } else {
             return {

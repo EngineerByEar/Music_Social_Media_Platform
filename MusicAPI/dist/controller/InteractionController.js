@@ -1,8 +1,8 @@
 import { InteractionService } from "../service/InteractionService.js";
 import { validateAuth } from "../auth.js";
 import { CommentRequestSchema, LikeRequestSchema, ViewRequestSchema } from "../model/InteractionModel.js";
-import { PostController } from "./PostController.js";
 import { PostService } from "../service/PostService.js";
+import { WebSocketController } from "./WebSocketController.js";
 export class InteractionController {
     static async init(app) {
         app.post('/interactions/posts/:post_id/comment', validateAuth, InteractionController.add_comment);
@@ -60,9 +60,12 @@ export class InteractionController {
         await InteractionService.add_like(data);
         const post = await PostService.get_post(undefined, data.post_id);
         if (post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
             });
+        }
+        else {
+            console.log(post);
         }
         res.status(200).json({
             "message": "Post liked successfully",
@@ -91,7 +94,7 @@ export class InteractionController {
         await InteractionService.delete_like(data);
         const post = await PostService.get_post(undefined, data.post_id);
         if (post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
             });
         }
@@ -121,7 +124,7 @@ export class InteractionController {
         await InteractionService.add_view(data);
         const post = await PostService.get_post(undefined, data.post_id);
         if (post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "view_count_updated", post_id: data.post_id, count: post.post_views_count
             });
         }

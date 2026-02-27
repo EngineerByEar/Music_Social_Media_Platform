@@ -9,7 +9,7 @@ export class InteractionService {
         const [ inserted ] = await DB.execute<ResultSetHeader>(`
             INSERT INTO comments (post_id, author_id, comment, comment_time)
             VALUES(?, ?, ?, current_timestamp())`,
-            [data.post_id, user_id, data.comment]);
+            [data.post_id, user_id!, data.comment]);
         return inserted.insertId;
     }
 
@@ -30,7 +30,7 @@ export class InteractionService {
             SELECT 1
             FROM likes
             WHERE post_id = ${post_id}
-              AND user_id = ${user_id}`);
+              AND user_id = ${user_id!}`);
         const rows = query[0] as ILikeRequest[];
         return rows.length > 0;
     }
@@ -39,14 +39,14 @@ export class InteractionService {
         const user_id = await UserService.getUserId(data.username);
         await DB.execute<ResultSetHeader>(`
             INSERT INTO likes (post_id, user_id, like_time)
-            VALUES(?, ?, current_timestamp())`, [data.post_id, user_id]);
+            VALUES(?, ?, current_timestamp())`, [data.post_id, user_id!]);
     }
 
     static async delete_like(data: ILikeRequest){
         const user_id = await UserService.getUserId(data.username);
         await DB.execute<ResultSetHeader>(`
             DELETE FROM likes
-            WHERE post_id = ? AND user_id = ?`, [data.post_id, user_id]);
+            WHERE post_id = ? AND user_id = ?`, [data.post_id, user_id!]);
     }
 
     static async add_view(data: IViewRequest){
@@ -60,7 +60,7 @@ export class InteractionService {
                     times_watched = times_watched + 1,
                     completed = completed OR VALUES(completed),
                     last_viewed_at = current_timestamp()
-                `, [data.post_id, user_id, data.watch_time_seconds, data.completed]);
+                `, [data.post_id, user_id!, data.watch_time_seconds, data.completed]);
     }
 
 }

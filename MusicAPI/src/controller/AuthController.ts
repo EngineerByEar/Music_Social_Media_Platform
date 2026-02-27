@@ -17,9 +17,10 @@ export class AuthController{
     }
 
     static async register(req:Request, res: Response){
-        const user: IAuthRegistration = AuthRegistrationSchema.parse(req.body);
-
-        if(!user.username || !user.email || !user.password){
+        let user: IAuthRegistration;
+        try{
+            user = AuthRegistrationSchema.parse(req.body);
+        }catch(e){
             res.status(400).json({
                 "message": "Missing required field",
                 "code": "INVALID_CREDENTIALS"
@@ -67,9 +68,11 @@ export class AuthController{
     }
 
     static async login(req: Request, res: Response){
-        const user: IAuthLoginUser = AuthLoginUserSchema.parse(req.body);
+        let user: IAuthLoginUser;
+        try {
+             user = AuthLoginUserSchema.parse(req.body);
 
-        if(!user.username || !user.password){
+        }catch(err){
             res.status(400).json({
                 "message": "Missing required field",
                 "code": "INVALID_CREDENTIALS"

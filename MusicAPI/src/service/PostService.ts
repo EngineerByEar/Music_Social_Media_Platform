@@ -23,7 +23,7 @@ export class PostService {
     static async createPost(data: ICreatePostRequest){
 
         const user_id = await UserService.getUserId(data.username as string);
-        const [ inserted ] = await DB.execute<ResultSetHeader>('Insert into `posts` (`author_id`, `post_title`, `post_description`, `post_upload_time`) values (?, ?, ?, current_timestamp())', [user_id, data.post_title, data.post_description]);
+        const [ inserted ] = await DB.execute<ResultSetHeader>('Insert into `posts` (`author_id`, `post_title`, `post_description`, `post_upload_time`) values (?, ?, ?, current_timestamp())', [user_id!, data.post_title, data.post_description]);
         return inserted.insertId;
     }
 

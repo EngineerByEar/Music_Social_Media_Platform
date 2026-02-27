@@ -63,7 +63,7 @@ export class UserService{
         const result = await DB.execute(`
         INSERT INTO contentpreferences
         (content_language, recommendation_algorithm, autoplay, user_id)
-        VALUES (?, ?, ?, ?)`,[data.content_language, data.recommendation_algorithm, data.autoplay, user_id]
+        VALUES (?, ?, ?, ?)`,[data.content_language, data.recommendation_algorithm, data.autoplay, user_id!]
         );
 
         const resset = result[0] as ResultSetHeader;
@@ -125,7 +125,7 @@ export class UserService{
         await DB.execute(`
             INSERT INTO uisettings
             (ui_language, theme, user_id)  
-            VALUES(?, ?, ?)`,[data.ui_language, data.theme, user_id]);
+            VALUES(?, ?, ?)`,[data.ui_language, data.theme, user_id!]);
     }
 
     static async get_ui_settings(user_id: number){

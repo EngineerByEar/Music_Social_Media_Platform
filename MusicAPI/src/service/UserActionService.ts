@@ -29,7 +29,7 @@ export class UserActionService {
 
         await DB.execute(`
             INSERT INTO follows(following_user, followed_user)
-            VALUES(?, ?)`, [user_id_following, user_id_followed]);
+            VALUES(?, ?)`, [user_id_following!, user_id_followed!]);
 
         return "SUCCESS";
 
@@ -57,7 +57,7 @@ export class UserActionService {
 
         await DB.execute(`
         DELETE FROM follows
-        WHERE following_user = ? AND followed_user =?`, [user_id_following, user_id_followed]);
+        WHERE following_user = ? AND followed_user =?`, [user_id_following!, user_id_followed!]);
 
         return "SUCCESS";
     }

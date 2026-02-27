@@ -12,12 +12,6 @@ import path from "path";
 import fs from "fs";
 import sharp from "sharp";
 import {AuthService} from "../service/AuthService.js";
-import {WebSocket, WebSocketServer} from "ws";
-import { Server as HttpServer } from 'http';
-import {IBroadcastMessage, IWsMessage} from "../model/PageModel";
-
-let wss;
-const subscriptions: Record<string, Set<WebSocket>> = {};
 
 const storage = multer.memoryStorage();
 export const upload = multer({ storage });
@@ -45,13 +39,18 @@ export class PostController {
     }
 
     static async upload_post(req: Request, res: Response) {
+        console.log("uploading");
         const files = req.files as {
             post_image: Express.Multer.File[];
             post_audio: Express.Multer.File[];
         }
 
+        if(!files.post_image || !files.post_audio){
+            console.log("No image or audio");
+        }
         const image = files.post_image[0]!;
         const audio = files.post_audio[0]!;
+
 
         //Error handling for files
         if (audio.size > 25000000) {
@@ -248,37 +247,6 @@ export class PostController {
         res.status(200).json(response);
     };
 
-    static initWebSocket(server: HttpServer){
-        wss = new WebSocketServer({server});
-
-        wss.on('connection', (ws: WebSocket) => {
-            ws.on('message', (msg: string) => {
-                let data :IWsMessage = JSON.parse(msg);
-                if(data.type === 'subscribe' && data.post_id) {
-                    if (!subscriptions[data.post_id]) {
-                        subscriptions[data.post_id] = new Set();
-                        subscriptions[data.post_id]!.add(ws);
-                    }
-                }else if (data.type === 'unsubscribe' && data.post_id){
-                        subscriptions[data.post_id]?.delete(ws);
-                    }
-            });
-            ws.on('close', ()=>{
-                Object.values(subscriptions).forEach(set => set.delete(ws));
-            });
-
-        })
-    };
-
-    static broadcast(message: IBroadcastMessage){
-        console.log("Broadcast");
-        const postSubs = subscriptions[message.post_id];
-        if(!postSubs){
-            return;
-        }
-        const msg = JSON.stringify(message);
-        postSubs.forEach(ws => ws.send(msg));
-    }
 
 
 }

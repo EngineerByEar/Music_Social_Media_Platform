@@ -10,6 +10,7 @@ import {
 } from "../model/InteractionModel.js";
 import {PostController} from "./PostController.js";
 import {PostService} from "../service/PostService.js";
+import {WebSocketController} from "./WebSocketController.js";
 
 export class InteractionController {
     static async init(app: Express){
@@ -79,9 +80,11 @@ export class InteractionController {
 
         const post = await PostService.get_post(undefined, data.post_id);
         if(post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
             });
+        }else{
+            console.log(post);
         }
 
         res.status(200).json({
@@ -118,7 +121,7 @@ export class InteractionController {
 
         const post = await PostService.get_post(undefined, data.post_id);
         if(post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "like_count_updated", post_id: data.post_id, count: post.post_likes_count
             });
         }
@@ -154,7 +157,7 @@ export class InteractionController {
 
         const post = await PostService.get_post(undefined, data.post_id);
         if(post != "post_not_found") {
-            PostController.broadcast({
+            WebSocketController.broadcast({
                 type: "view_count_updated", post_id: data.post_id, count: post.post_views_count
             });
         }

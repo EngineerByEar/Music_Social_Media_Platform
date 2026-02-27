@@ -6,9 +6,6 @@ import path from "path";
 import fs from "fs";
 import sharp from "sharp";
 import { AuthService } from "../service/AuthService.js";
-import { WebSocketServer } from "ws";
-let wss;
-const subscriptions = {};
 const storage = multer.memoryStorage();
 export const upload = multer({ storage });
 export class PostController {
@@ -28,7 +25,11 @@ export class PostController {
         res.status(200).send(["Rock", "Reggae", "HipHop", "Metal"]);
     }
     static async upload_post(req, res) {
+        console.log("uploading");
         const files = req.files;
+        if (!files.post_image || !files.post_audio) {
+            console.log("No image or audio");
+        }
         const image = files.post_image[0];
         const audio = files.post_audio[0];
         //Error handling for files
@@ -189,35 +190,5 @@ export class PostController {
         res.status(200).json(response);
     }
     ;
-    static initWebSocket(server) {
-        wss = new WebSocketServer({ server });
-        wss.on('connection', (ws) => {
-            ws.on('message', (msg) => {
-                let data = JSON.parse(msg);
-                if (data.type === 'subscribe' && data.post_id) {
-                    if (!subscriptions[data.post_id]) {
-                        subscriptions[data.post_id] = new Set();
-                        subscriptions[data.post_id].add(ws);
-                    }
-                }
-                else if (data.type === 'unsubscribe' && data.post_id) {
-                    subscriptions[data.post_id]?.delete(ws);
-                }
-            });
-            ws.on('close', () => {
-                Object.values(subscriptions).forEach(set => set.delete(ws));
-            });
-        });
-    }
-    ;
-    static broadcast(message) {
-        console.log("Broadcast");
-        const postSubs = subscriptions[message.post_id];
-        if (!postSubs) {
-            return;
-        }
-        const msg = JSON.stringify(message);
-        postSubs.forEach(ws => ws.send(msg));
-    }
 }
 //# sourceMappingURL=PostController.js.map

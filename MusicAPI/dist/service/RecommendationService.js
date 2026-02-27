@@ -18,7 +18,7 @@ export class RecommendationService {
            left join watchtime w on p.post_id = w.post_id
            left join waveforms wf on wf.post_id = p.post_id
            GROUP BY p.post_id
-           ORDER BY post_likes_count DESC LIMIT 10`);
+           Order By RAND() LIMIT 10`);
         return rows.map((row) => {
             return {
                 ...row,
@@ -30,6 +30,7 @@ export class RecommendationService {
         const [rows] = await DB.query(`
             SELECT post_id
             FROM posts p
+            Order By RAND()
             LIMIT 10`);
         return rows;
     }

@@ -29,12 +29,12 @@ Three recommendation modes are supported:
 
 | Mode | Description |
 |---|---|
-| **Guest** | Returns the 10 most-liked posts globally |
+| **Guest** | Returns the most-liked posts globally |
 | **Content-based** | Matches posts to a user's preferred genres and tags |
 | **Collaborative** | Finds posts liked by similar users based on interaction history |
 
 Users choose their preferred algorithm in account settings. The recommendation engine reads from a `contentpreferences` table per user and resolves post previews including pre-computed waveform data.
-
+Modes are not implemented yet.
 
 ## 🔊 Waveform Generation
 
@@ -92,6 +92,5 @@ JWT-based authentication using `jsonwebtoken`. The `validateAuth` middleware ext
 
 - Replace the placeholder collaborative filter with a proper matrix factorisation or neural model
 - Add ML-based audio feature extraction (tempo, key, energy) to improve content-based matching
-- Implement server-side pagination for recommendations and comment feeds
 - Add post search by tag, genre, or artist
 - Introduce a notification system for follows, likes, and comments

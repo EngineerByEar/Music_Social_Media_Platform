@@ -1,4 +1,4 @@
-# [Music Social Media Platform](https://github.com/EngineerByEar/Music_Social_Media_Platform)
+# Music Social Media Platform
 
 A social media platform built around music sharing. Users can upload original audio tracks, interact with other creators, and receive personalised recommendations based on their listening behaviour and preferences. I built the backend; a colleague built the frontend.
 

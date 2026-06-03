@@ -57,7 +57,6 @@ On every audio upload, the backend automatically generates a waveform for the fr
 { "type": "like_count_updated", "post_id": 42, "count": 137 }
 ```
 
----
 
 ## 🔌 API Endpoints
 
@@ -67,13 +66,11 @@ Fully documented in openapi format served at `/docs` (Swagger UI).
   <img src="screenshots/api_docs.png">
 </p>
 
----
 
 ## 🔐 Authentication
 
 JWT-based authentication using `jsonwebtoken`. The `validateAuth` middleware extracts and verifies a Bearer token on protected routes, attaching the decoded `username` to `req.params._username`. Some routes (e.g. profile view, post detail) accept an optional token to enrich the response — for example to indicate whether the requesting user has liked a post.
 
----
 
 ## 🛠️ Tech Stack
 
@@ -90,7 +87,6 @@ JWT-based authentication using `jsonwebtoken`. The `validateAuth` middleware ext
 | Validation | Zod |
 | API Docs | OpenAPI 3.0 / Swagger UI |
 
----
 
 ## 🚀 Possible Extensions
 
